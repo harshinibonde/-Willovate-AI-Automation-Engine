@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Upload File | Willovate CRM{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <div class="breadcrumb">Workspace / Files</div>
+        <h1>Upload File</h1>
+        <p>Upload a file to the workspace.</p>
+    </div>
+</div>
+
+<section class="form-layout">
+    <div class="panel form-panel">
+        <div class="panel-header">
+            <div>
+                <h2>File Upload</h2>
+                <p>Select a file to upload.</p>
+            </div>
+        </div>
+
+        <form
+            method="POST"
+            action="/files"
+            enctype="multipart/form-data"
+            id="file-upload-form"
+        >
+            <div class="form-group">
+                <label for="file-upload">File</label>
+
+                <input
+                    type="file"
+                    id="file-upload"
+                    name="file"
+                    required
+                >
+            </div>
+
+            <div class="form-footer">
+                <button
+                    type="submit"
+                    class="button button-primary"
+                    id="upload-file"
+                >
+                    Upload File
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

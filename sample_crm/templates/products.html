@@ -1,0 +1,329 @@
+{% extends "base.html" %}
+
+{% block title %}Products | Willovate CRM{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <div class="breadcrumb">Workspace / Products</div>
+        <h1>Products</h1>
+        <p>Manage your products, pricing and inventory.</p>
+    </div>
+</div>
+
+<section class="panel form-panel" style="margin-bottom: 20px;">
+    <div class="panel-header">
+        <div>
+            <h2>Add Product</h2>
+            <p>Create a new product record.</p>
+        </div>
+    </div>
+
+    <form
+        method="POST"
+        action="{{ url_for('add_product') }}"
+        id="product-form"
+        style="padding: 24px;"
+    >
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="product-name">
+                    Product Name <span>*</span>
+                </label>
+                <input
+                    type="text"
+                    id="product-name"
+                    name="product_name"
+                    placeholder="e.g. Cloud CRM"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="product-category">
+                    Category <span>*</span>
+                </label>
+                <select
+                    id="product-category"
+                    name="category"
+                    required
+                >
+                    <option value="">Select category</option>
+                    <option value="Software">Software</option>
+                    <option value="Analytics">Analytics</option>
+                    <option value="Automation">Automation</option>
+                    <option value="Services">Services</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="product-price">
+                    Price <span>*</span>
+                </label>
+                <input
+                    type="number"
+                    id="product-price"
+                    name="price"
+                    placeholder="4999"
+                    min="0"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="product-stock">
+                    Stock <span>*</span>
+                </label>
+                <input
+                    type="number"
+                    id="product-stock"
+                    name="stock"
+                    placeholder="100"
+                    min="0"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="product-status">
+                    Status
+                </label>
+                <select
+                    id="product-status"
+                    name="status"
+                >
+                    <option value="Available">Available</option>
+                    <option value="Low Stock">Low Stock</option>
+                    <option value="Out of Stock">Out of Stock</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-footer">
+            <button
+                type="reset"
+                class="button button-secondary"
+                id="reset-product-form"
+            >
+                Reset
+            </button>
+
+            <button
+                type="submit"
+                class="button button-primary"
+                id="save-product"
+            >
+                Save Product
+            </button>
+        </div>
+    </form>
+</section>
+
+<section class="panel customer-panel">
+    <div class="table-toolbar">
+        <div>
+            <h2>Product Catalog</h2>
+            <p>{{ products|length }} products available</p>
+        </div>
+
+        <form
+            method="GET"
+            action="{{ url_for('product_list') }}"
+            class="table-search"
+            id="product-search-form"
+        >
+            <span>⌕</span>
+            <input
+                type="search"
+                name="search"
+                id="product-search"
+                value="{{ search }}"
+                placeholder="Search products..."
+                aria-label="Search products"
+            >
+        </form>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="customer-table" id="product-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="product-table-body">
+                {% for product in products %}
+                <tr id="product-row-{{ product.id }}">
+                    <td>
+                        <div class="customer-cell">
+                            <div class="customer-avatar">
+                                {{ product.name[0]|upper }}
+                            </div>
+
+                            <div>
+                                <strong>{{ product.name }}</strong>
+                                <small>
+                                    Product #{{ "%04d"|format(product.id) }}
+                                </small>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>{{ product.category }}</td>
+
+                    <td>
+                        ₹{{ "{:,.0f}".format(product.price) }}
+                    </td>
+
+                    <td>{{ product.stock }}</td>
+
+                    <td>
+                        <span class="badge {% if product.status == 'Available' %}active{% else %}pending{% endif %}">
+                            <span class="badge-dot"></span>
+                            {{ product.status }}
+                        </span>
+                    </td>
+
+                    <td>
+                        <div class="row-actions">
+                            <button
+                                class="action-button edit"
+                                id="edit-product-{{ product.id }}"
+                                type="button"
+                                data-product-id="{{ product.id }}"
+                                data-product-name="{{ product.name }}"
+                                data-product-category="{{ product.category }}"
+                                data-product-price="{{ product.price }}"
+                                data-product-stock="{{ product.stock }}"
+                                data-product-status="{{ product.status }}"
+                            >
+                                Edit
+                            </button>
+
+                            <button
+                                class="action-button delete"
+                                id="delete-product-{{ product.id }}"
+                                type="button"
+                                data-product-id="{{ product.id }}"
+                                data-product-name="{{ product.name }}"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6">
+                        <div class="empty-state">
+                            <div class="empty-icon">◇</div>
+                            <h3>No products found</h3>
+                            <p>Try another search or add a new product.</p>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<div class="modal-backdrop" id="product-delete-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+        <div class="modal-icon danger">!</div>
+
+        <h2>Delete product?</h2>
+
+        <p>
+            You are about to permanently delete
+            <strong id="delete-product-name"></strong>.
+            This action cannot be undone.
+        </p>
+
+        <div class="modal-actions">
+            <button
+                type="button"
+                class="button button-secondary"
+                id="cancel-product-delete"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                class="button button-danger"
+                id="confirm-product-delete"
+            >
+                Delete Product
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+window.PRODUCT_DELETE_URL="{{ url_for('delete_product', product_id=0) }}";
+window.PRODUCT_EDIT_URL="{{ url_for('edit_product', product_id=0) }}";
+
+document.querySelectorAll(".edit").forEach(button=>{
+    button.addEventListener("click",()=>{
+        const id=button.dataset.productId;
+
+        const name=document.querySelector("#product-name");
+        const category=document.querySelector("#product-category");
+        const price=document.querySelector("#product-price");
+        const stock=document.querySelector("#product-stock");
+        const status=document.querySelector("#product-status");
+        const form=document.querySelector("#product-form");
+        const save=document.querySelector("#save-product");
+
+        name.value=button.dataset.productName;
+        category.value=button.dataset.productCategory;
+        price.value=button.dataset.productPrice;
+        stock.value=button.dataset.productStock;
+        status.value=button.dataset.productStatus;
+
+        save.textContent="Update Product";
+
+        form.onsubmit=async(event)=>{
+            event.preventDefault();
+
+            const response=await fetch(
+                window.PRODUCT_EDIT_URL.replace("/0",`/${id}`),
+                {
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({
+                        name:name.value,
+                        category:category.value,
+                        price:price.value,
+                        stock:stock.value,
+                        status:status.value
+                    })
+                }
+            );
+
+            const data=await response.json();
+
+            if(data.success){
+                window.location.reload();
+            }else{
+                alert(data.message||"Product update failed.");
+            }
+        };
+
+        form.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+    });
+});
+</script>
+{% endblock %}

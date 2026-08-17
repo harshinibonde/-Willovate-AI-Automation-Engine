@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | Willovate CRM{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <div class="breadcrumb">Workspace / Dashboard</div>
+        <h1>Good morning, Admin</h1>
+        <p>Here's what's happening across your CRM today.</p>
+    </div>
+
+    <div class="header-actions">
+        <a
+            href="{{ url_for('add_customer') }}"
+            class="button button-primary"
+            id="dashboard-add-customer"
+        >
+            <span>+</span>
+            Add Customer
+        </a>
+    </div>
+</div>
+
+<section class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon blue">♙</div>
+        <div class="stat-content">
+            <span>Total Customers</span>
+            <strong>{{ customer_count }}</strong>
+            <small class="positive">↑ 12.5% this month</small>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon purple">◇</div>
+        <div class="stat-content">
+            <span>Products</span>
+            <strong>{{ product_count }}</strong>
+            <small class="positive">↑ 8.2% this month</small>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon green">✓</div>
+        <div class="stat-content">
+            <span>Active Customers</span>
+            <strong>{{ active_customers }}</strong>
+            <small class="positive">↑ 4.1% this month</small>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon orange">₹</div>
+        <div class="stat-content">
+            <span>Monthly Revenue</span>
+            <strong>₹84,520</strong>
+            <small class="positive">↑ 10.8% this month</small>
+        </div>
+    </div>
+</section>
+
+<div class="content-grid">
+    <section class="panel large-panel">
+        <div class="panel-header">
+            <div>
+                <h2>Recent Customers</h2>
+                <p>Latest customer activity</p>
+            </div>
+
+            <a
+                href="{{ url_for('customer_list') }}"
+                class="text-button"
+                id="view-all-customers"
+            >
+                View all →
+            </a>
+        </div>
+
+        <div class="mini-table">
+            <div class="mini-row mini-header">
+                <span>Customer</span>
+                <span>Company</span>
+                <span>Status</span>
+            </div>
+
+            {% for customer in [
+                {"name": "Amit Sharma", "company": "TechNova", "status": "Active"},
+                {"name": "Priya Mehta", "company": "BrightLabs", "status": "Active"},
+                {"name": "Rahul Verma", "company": "Vertex Solutions", "status": "Pending"},
+                {"name": "Ananya Patel", "company": "CloudPeak", "status": "Active"}
+            ] %}
+            <div class="mini-row">
+                <div class="customer-cell">
+                    <div class="small-avatar">
+                        {{ customer.name[0] }}
+                    </div>
+                    <span>{{ customer.name }}</span>
+                </div>
+                <span>{{ customer.company }}</span>
+                <span>
+                    <span class="badge {{ customer.status|lower }}">
+                        {{ customer.status }}
+                    </span>
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <h2>Quick Actions</h2>
+                <p>Common tasks</p>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <a
+                href="{{ url_for('add_customer') }}"
+                class="quick-action"
+                id="quick-add-customer"
+            >
+                <span class="quick-icon blue">+</span>
+                <span>
+                    <strong>Add Customer</strong>
+                    <small>Create a new customer record</small>
+                </span>
+                <span>→</span>
+            </a>
+
+            <a
+                href="{{ url_for('customer_list') }}"
+                class="quick-action"
+                id="quick-view-customers"
+            >
+                <span class="quick-icon purple">♙</span>
+                <span>
+                    <strong>View Customers</strong>
+                    <small>Manage your customer records</small>
+                </span>
+                <span>→</span>
+            </a>
+
+            <a
+                href="{{ url_for('reports') }}"
+                class="quick-action"
+                id="quick-reports"
+            >
+                <span class="quick-icon green">▤</span>
+                <span>
+                    <strong>View Reports</strong>
+                    <small>Review business performance</small>
+                </span>
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+</div>
+
+<section class="panel activity-panel">
+    <div class="panel-header">
+        <div>
+            <h2>Recent Activity</h2>
+            <p>Latest actions in your workspace</p>
+        </div>
+    </div>
+
+    <div class="activity-list">
+        <div class="activity-item">
+            <div class="activity-dot blue"></div>
+            <div>
+                <strong>New customer added</strong>
+                <p>Amit Sharma was added to the CRM.</p>
+            </div>
+            <span>10 min ago</span>
+        </div>
+
+        <div class="activity-item">
+            <div class="activity-dot green"></div>
+            <div>
+                <strong>Report generated</strong>
+                <p>Daily sales report was generated successfully.</p>
+            </div>
+            <span>32 min ago</span>
+        </div>
+
+        <div class="activity-item">
+            <div class="activity-dot purple"></div>
+            <div>
+                <strong>Customer updated</strong>
+                <p>Priya Mehta's account details were updated.</p>
+            </div>
+            <span>1 hr ago</span>
+        </div>
+    </div>
+</section>
+{% endblock %}

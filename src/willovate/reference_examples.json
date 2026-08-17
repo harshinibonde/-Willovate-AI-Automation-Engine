@@ -1,0 +1,298 @@
+[
+  {
+    "instruction": "Amit ka account bana do mobile 9988776655",
+    "intent": "ADD_CUSTOMER",
+    "entities": {
+      "customer_name": "Amit",
+      "phone_number": "9988776655"
+    }
+  },
+  {
+    "instruction": "add custmer Rahul phone 9876543210",
+    "intent": "ADD_CUSTOMER",
+    "entities": {
+      "customer_name": "Rahul",
+      "phone_number": "9876543210"
+    }
+  },
+  {
+    "instruction": "Customer Amit add kar do, number 9988776655",
+    "intent": "ADD_CUSTOMER",
+    "entities": {
+      "customer_name": "Amit",
+      "phone_number": "9988776655"
+    }
+  },
+  {
+    "instruction": "New customer Amit, phone number 9988776655",
+    "intent": "ADD_CUSTOMER",
+    "entities": {
+      "customer_name": "Amit",
+      "phone_number": "9988776655"
+    }
+  },
+  {
+    "instruction": "New customer Neha, phone number 9001122334",
+    "intent": "ADD_CUSTOMER",
+    "entities": {
+      "customer_name": "Neha",
+      "phone_number": "9001122334"
+    }
+  },
+  {
+    "instruction": "Please make Printer cost 59999",
+    "intent": "UPDATE_PRODUCT",
+    "entities": {
+      "product_name": "Printer",
+      "price": "59999"
+    }
+  },
+  {
+    "instruction": "Change the price of Headphones to 18000",
+    "intent": "UPDATE_PRODUCT",
+    "entities": {
+      "product_name": "Headphones",
+      "price": "18000"
+    }
+  },
+  {
+    "instruction": "Update Headphones ka price 1299 kar do",
+    "intent": "UPDATE_PRODUCT",
+    "entities": {
+      "product_name": "Headphones",
+      "price": "1299"
+    }
+  },
+  {
+    "instruction": "Change the price of Camera to 599",
+    "intent": "UPDATE_PRODUCT",
+    "entities": {
+      "product_name": "Camera",
+      "price": "599"
+    }
+  },
+  {
+    "instruction": "Please make Laptop cost 4999",
+    "intent": "UPDATE_PRODUCT",
+    "entities": {
+      "product_name": "Laptop",
+      "price": "4999"
+    }
+  },
+  {
+    "instruction": "this month ka sales report download karo",
+    "intent": "DOWNLOAD_REPORT",
+    "entities": {
+      "report_type": "sales report",
+      "date": "this month"
+    }
+  },
+  {
+    "instruction": "Get daily report for last week",
+    "intent": "DOWNLOAD_REPORT",
+    "entities": {
+      "report_type": "daily report",
+      "date": "last week"
+    }
+  },
+  {
+    "instruction": "Please download inventory report dated Monday",
+    "intent": "DOWNLOAD_REPORT",
+    "entities": {
+      "report_type": "inventory report",
+      "date": "Monday"
+    }
+  },
+  {
+    "instruction": "Get monthly report for last week",
+    "intent": "DOWNLOAD_REPORT",
+    "entities": {
+      "report_type": "monthly report",
+      "date": "last week"
+    }
+  },
+  {
+    "instruction": "Get sales report for yesterday",
+    "intent": "DOWNLOAD_REPORT",
+    "entities": {
+      "report_type": "sales report",
+      "date": "yesterday"
+    }
+  },
+  {
+    "instruction": "Meera ka form fill karo phone 9876501234",
+    "intent": "FILL_FORM",
+    "entities": {
+      "customer_name": "Meera",
+      "phone_number": "9876501234"
+    }
+  },
+  {
+    "instruction": "Fill customer form with Neha, phone 9001122334",
+    "intent": "FILL_FORM",
+    "entities": {
+      "customer_name": "Neha",
+      "phone_number": "9001122334"
+    }
+  },
+  {
+    "instruction": "Sara ka form fill karo phone 9812345678",
+    "intent": "FILL_FORM",
+    "entities": {
+      "customer_name": "Sara",
+      "phone_number": "9812345678"
+    }
+  },
+  {
+    "instruction": "Fill the customer details: Rahul, 9876543210",
+    "intent": "FILL_FORM",
+    "entities": {
+      "customer_name": "Rahul",
+      "phone_number": "9876543210"
+    }
+  },
+  {
+    "instruction": "Fill customer form with Sara, phone 9812345678",
+    "intent": "FILL_FORM",
+    "entities": {
+      "customer_name": "Sara",
+      "phone_number": "9812345678"
+    }
+  },
+  {
+    "instruction": "Upload data.xlsx",
+    "intent": "UPLOAD_FILE",
+    "entities": {
+      "file_name": "data.xlsx"
+    }
+  },
+  {
+    "instruction": "uplod data.xlsx",
+    "intent": "UPLOAD_FILE",
+    "entities": {
+      "file_name": "data.xlsx"
+    }
+  },
+  {
+    "instruction": "Upload image.png",
+    "intent": "UPLOAD_FILE",
+    "entities": {
+      "file_name": "image.png"
+    }
+  },
+  {
+    "instruction": "uplod backup.zip",
+    "intent": "UPLOAD_FILE",
+    "entities": {
+      "file_name": "backup.zip"
+    }
+  },
+  {
+    "instruction": "report.csv upload kar do",
+    "intent": "UPLOAD_FILE",
+    "entities": {
+      "file_name": "report.csv"
+    }
+  },
+  {
+    "instruction": "customer list dikhao",
+    "intent": "READ_TABLE",
+    "entities": {
+      "table": "customer list"
+    }
+  },
+  {
+    "instruction": "Read the product table",
+    "intent": "READ_TABLE",
+    "entities": {
+      "table": "product table"
+    }
+  },
+  {
+    "instruction": "Show me the customer list",
+    "intent": "READ_TABLE",
+    "entities": {
+      "table": "customer list"
+    }
+  },
+  {
+    "instruction": "Show me the product table",
+    "intent": "READ_TABLE",
+    "entities": {
+      "table": "product table"
+    }
+  },
+  {
+    "instruction": "Read the employee table",
+    "intent": "READ_TABLE",
+    "entities": {
+      "table": "employee table"
+    }
+  },
+  {
+    "instruction": "Send email",
+    "intent": "SEND_EMAIL",
+    "entities": {}
+  },
+  {
+    "instruction": "Send an email to manager",
+    "intent": "SEND_EMAIL",
+    "entities": {
+      "recipient": "manager"
+    }
+  },
+  {
+    "instruction": "Send a mail",
+    "intent": "SEND_EMAIL",
+    "entities": {}
+  },
+  {
+    "instruction": "Email Rahul",
+    "intent": "SEND_EMAIL",
+    "entities": {
+      "recipient": "Rahul"
+    }
+  },
+  {
+    "instruction": "Email Priya",
+    "intent": "SEND_EMAIL",
+    "entities": {
+      "recipient": "Priya"
+    }
+  },
+  {
+    "instruction": "Delete the customer record for Amit",
+    "intent": "DELETE_CUSTOMER",
+    "entities": {
+      "customer_name": "Amit"
+    }
+  },
+  {
+    "instruction": "Erase Sara from the customer records",
+    "intent": "DELETE_CUSTOMER",
+    "entities": {
+      "customer_name": "Sara"
+    }
+  },
+  {
+    "instruction": "Customer Karan ko remove karo",
+    "intent": "DELETE_CUSTOMER",
+    "entities": {
+      "customer_name": "Karan"
+    }
+  },
+  {
+    "instruction": "Rahul ko customer records se hata do",
+    "intent": "DELETE_CUSTOMER",
+    "entities": {
+      "customer_name": "Rahul"
+    }
+  },
+  {
+    "instruction": "Erase Ananya from the customer records",
+    "intent": "DELETE_CUSTOMER",
+    "entities": {
+      "customer_name": "Ananya"
+    }
+  }
+]

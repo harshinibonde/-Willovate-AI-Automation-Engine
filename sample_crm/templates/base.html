@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Willovate CRM{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark">W</div>
+                <div>
+                    <div class="brand-name">Willovate</div>
+                    <div class="brand-subtitle">CRM Platform</div>
+                </div>
+            </div>
+
+            <nav class="navigation">
+                <div class="nav-label">WORKSPACE</div>
+
+                <a href="{{ url_for('dashboard') }}"
+                   class="nav-item {% if request.endpoint == 'dashboard' %}active{% endif %}"
+                   id="nav-dashboard">
+                    <span class="nav-icon">▦</span>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="{{ url_for('customer_list') }}"
+                   class="nav-item {% if request.endpoint in ['customer_list', 'add_customer', 'edit_customer'] %}active{% endif %}"
+                   id="nav-customers">
+                    <span class="nav-icon">♙</span>
+                    <span>Customers</span>
+                </a>
+
+                <a href="{{ url_for('product_list') }}"
+                   class="nav-item {% if request.endpoint == 'product_list' %}active{% endif %}"
+                   id="nav-products">
+                    <span class="nav-icon">◇</span>
+                    <span>Products</span>
+                </a>
+
+                <a href="{{ url_for('reports') }}"
+                   class="nav-item {% if request.endpoint == 'reports' %}active{% endif %}"
+                   id="nav-reports">
+                    <span class="nav-icon">▤</span>
+                    <span>Reports</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    <div>
+                        <strong>System online</strong>
+                        <small>All services operational</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-search">
+                    <span class="search-icon">⌕</span>
+                    <input
+                        type="search"
+                        id="global-search"
+                        placeholder="Search anything..."
+                        aria-label="Search"
+                    >
+                    <span class="shortcut">⌘ K</span>
+                </div>
+
+                <div class="topbar-actions">
+                    <button class="icon-button" id="notification-button" aria-label="Notifications">
+                        ♧
+                    </button>
+
+                    <div class="profile">
+                        <div class="avatar">AD</div>
+                        <div class="profile-info">
+                            <strong>Admin</strong>
+                            <span>Administrator</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-container">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="flash-container">
+                            {% for category, message in messages %}
+                                <div class="flash-message {{ category }}" role="alert">
+                                    <span>
+                                        {% if category == "success" %}✓{% else %}!{% endif %}
+                                    </span>
+                                    <span>{{ message }}</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

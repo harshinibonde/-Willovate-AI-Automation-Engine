@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Reports | Willovate CRM{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <div class="breadcrumb">Workspace / Reports</div>
+        <h1>Reports</h1>
+        <p>View and download business reports.</p>
+    </div>
+</div>
+
+<section class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon blue">₹</div>
+        <div class="stat-content">
+            <span>Total Sales</span>
+            <strong>₹84,520</strong>
+            <small class="positive">↑ 10.8% this month</small>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon green">✓</div>
+        <div class="stat-content">
+            <span>Completed Orders</span>
+            <strong>126</strong>
+            <small class="positive">↑ 6.4% this month</small>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon purple">♙</div>
+        <div class="stat-content">
+            <span>New Customers</span>
+            <strong>32</strong>
+            <small class="positive">↑ 12.5% this month</small>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon orange">▤</div>
+        <div class="stat-content">
+            <span>Reports Generated</span>
+            <strong>48</strong>
+            <small>This month</small>
+        </div>
+    </div>
+</section>
+
+<section class="panel">
+    <div class="panel-header">
+        <div>
+            <h2>Available Reports</h2>
+            <p>Download reports generated from the CRM.</p>
+        </div>
+    </div>
+
+    <div class="quick-actions">
+        <div class="quick-action">
+            <span class="quick-icon blue">▤</span>
+
+            <span>
+                <strong>Daily Report</strong>
+                <small>
+                    Summary of today's customer activity
+                </small>
+            </span>
+
+            <a
+                href="{{ url_for('daily_report') }}"
+                class="button button-secondary"
+                id="download-daily-report"
+                download
+            >
+                Download
+            </a>
+        </div>
+
+        <div class="quick-action">
+            <span class="quick-icon green">₹</span>
+
+            <span>
+                <strong>Sales Report</strong>
+                <small>
+                    Product sales and inventory breakdown
+                </small>
+            </span>
+
+            <a
+                href="{{ url_for('sales_report') }}"
+                class="button button-secondary"
+                id="download-sales-report"
+                download
+            >
+                Download
+            </a>
+        </div>
+
+        <div class="quick-action">
+            <span class="quick-icon purple">▤</span>
+
+            <span>
+                <strong>Monthly Report</strong>
+                <small>
+                    Complete monthly CRM summary
+                </small>
+            </span>
+
+            <a
+                href="{{ url_for('monthly_report') }}"
+                class="button button-secondary"
+                id="download-monthly-report"
+                download
+            >
+                Download
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% if edit_mode %}
+    {% set page_title = "Edit Customer" %}
+    {% set page_description = "Update the customer's information." %}
+{% else %}
+    {% set page_title = "Add Customer" %}
+    {% set page_description = "Create a new customer record." %}
+{% endif %}
+
+{% block title %}{{ page_title }} | Willovate CRM{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <div class="breadcrumb">
+            Workspace / Customers / {{ page_title }}
+        </div>
+        <h1>{{ page_title }}</h1>
+        <p>{{ page_description }}</p>
+    </div>
+</div>
+
+<section class="form-layout">
+    <div class="panel form-panel">
+        <div class="panel-header">
+            <div>
+                <h2>Customer Information</h2>
+                <p>Enter the customer's details below.</p>
+            </div>
+
+            <span class="required-note">
+                * Required
+            </span>
+        </div>
+
+        <form
+            method="POST"
+            action="{% if edit_mode %}{{ url_for('edit_customer', customer_id=customer.id) }}{% else %}{{ url_for('add_customer') }}{% endif %}"
+            id="customer-form"
+            novalidate
+        >
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <label for="customer-name">
+                        Customer Name <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customer-name"
+                        name="customer_name"
+                        value="{{ customer.name if customer else '' }}"
+                        placeholder="e.g. Pankaj Koche"
+                        autocomplete="name"
+                        required
+                    >
+                    <small class="field-hint">
+                        Enter the customer's full name.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone-number">
+                        Phone Number <span>*</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone-number"
+                        name="phone_number"
+                        value="{{ customer.phone if customer else '' }}"
+                        placeholder="e.g. 9876543210"
+                        autocomplete="tel"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="{{ customer.email if customer else '' }}"
+                        placeholder="e.g. pankaj@example.com"
+                        autocomplete="email"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="company">
+                        Company
+                    </label>
+
+                    <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        value="{{ customer.company if customer else '' }}"
+                        placeholder="e.g. Acme Technologies"
+                        autocomplete="organization"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="customer-status">
+                        Status
+                    </label>
+
+                    <select
+                        id="customer-status"
+                        name="status"
+                    >
+                        <option
+                            value="Active"
+                            {% if not customer or customer.status == "Active" %}selected{% endif %}
+                        >
+                            Active
+                        </option>
+
+                        <option
+                            value="Pending"
+                            {% if customer and customer.status == "Pending" %}selected{% endif %}
+                        >
+                            Pending
+                        </option>
+
+                        <option
+                            value="Inactive"
+                            {% if customer and customer.status == "Inactive" %}selected{% endif %}
+                        >
+                            Inactive
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-footer">
+                <a
+                    href="{{ url_for('customer_list') }}"
+                    class="button button-secondary"
+                    id="cancel-customer-btn"
+                >
+                    Cancel
+                </a>
+
+                <button
+                    type="submit"
+                    class="button button-primary"
+                    id="save-customer"
+                >
+                    {% if edit_mode %}
+                        Save Changes
+                    {% else %}
+                        Save Customer
+                    {% endif %}
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <aside class="form-help">
+        <div class="help-card">
+            <div class="help-icon">i</div>
+            <h3>Customer records</h3>
+            <p>
+                Keep customer information accurate and up to date.
+                Required fields must be completed before saving.
+            </p>
+        </div>
+
+        <div class="help-card subtle">
+            <h3>Automation ready</h3>
+            <p>
+                This form uses stable field identifiers so Willovate
+                can interact with it reliably.
+            </p>
+        </div>
+    </aside>
+</section>
+{% endblock %}

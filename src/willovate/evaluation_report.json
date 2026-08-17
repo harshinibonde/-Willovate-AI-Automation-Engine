@@ -1,0 +1,5559 @@
+{
+  "dataset": "C:\\Users\\ASUS\\OneDrive\\Documents\\Willovate AI Automation Engine\\src\\willovate\\dataset\\willovate_evaluation_dataset.csv",
+  "random_seed": 42,
+  "eval_ratio": 0.2,
+  "total_examples": 400,
+  "development_examples": 320,
+  "evaluation_examples": 80,
+  "metrics": {
+    "intent_accuracy": 1.0,
+    "entity_accuracy": 0.975,
+    "missing_information_accuracy": 0.9875,
+    "workflow_generation_accuracy": 0.0,
+    "json_validity": 1.0,
+    "workflow_validation_rate": 1.0,
+    "unsupported_action_rate": 0.0,
+    "hallucination_rate": 0.0
+  },
+  "workflow_breakdown": {
+    "workflow_attempts": 74,
+    "valid_workflows": 74,
+    "generation_failures": 0,
+    "validation_failures": 0
+  },
+  "counts": {
+    "intent_correct": 80,
+    "entity_correct": 78,
+    "clarification_correct": 79,
+    "clarification_total": 80,
+    "workflow_generation_correct": 0,
+    "workflow_valid": 74,
+    "workflow_total": 74,
+    "json_valid_count": 74,
+    "json_valid_total": 74,
+    "unsupported_action_count": 0,
+    "unsupported_action_total": 74,
+    "hallucination_count": 0,
+    "hallucination_total": 74
+  },
+  "results": [
+    {
+      "instruction": "Take Arjun off the customer list",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Arjun"
+      },
+      "predicted_entities": {
+        "customer_name": "Arjun"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Arjun"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Arjun\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please delete Amit from the CRM",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Amit"
+      },
+      "predicted_entities": {
+        "customer_name": "Amit"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Amit"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Amit\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Manav customer delete kar do",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Manav"
+      },
+      "predicted_entities": {
+        "customer_name": "Manav"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Manav"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Manav\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Arjun ko customers se hatao",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Arjun"
+      },
+      "predicted_entities": {
+        "customer_name": "Arjun"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Arjun"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Arjun\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Set Headphones price to 50000",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Headphones",
+        "price": "50000"
+      },
+      "predicted_entities": {
+        "product_name": "Headphones",
+        "price": "50000"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Headphones"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "50000"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Headphones\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "50000"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Nisha ko customer records se hata do",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Nisha"
+      },
+      "predicted_entities": {
+        "customer_name": "Nisha"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Nisha"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Nisha\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please download daily report dated Monday",
+      "expected_intent": "DOWNLOAD_REPORT",
+      "predicted_intent": "DOWNLOAD_REPORT",
+      "expected_entities": {
+        "report_type": "daily report",
+        "date": "Monday"
+      },
+      "predicted_entities": {
+        "report_type": "daily report",
+        "date": "Monday"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "reports",
+          "value": null
+        },
+        {
+          "action": "DOWNLOAD_FILE",
+          "target": "report-download",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "reports",
+            "value": null
+          },
+          {
+            "action": "DOWNLOAD_FILE",
+            "target": "#download-daily-report",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Download the daily report for today",
+      "expected_intent": "DOWNLOAD_REPORT",
+      "predicted_intent": "DOWNLOAD_REPORT",
+      "expected_entities": {
+        "report_type": "daily report",
+        "date": "today"
+      },
+      "predicted_entities": {
+        "report_type": "daily report",
+        "date": "today"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "reports",
+          "value": null
+        },
+        {
+          "action": "DOWNLOAD_FILE",
+          "target": "report-download",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "reports",
+            "value": null
+          },
+          {
+            "action": "DOWNLOAD_FILE",
+            "target": "#download-daily-report",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Delete customer Meera",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Meera"
+      },
+      "predicted_entities": {
+        "customer_name": "Meera"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Meera"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Meera\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please make Headphones cost 59999",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Headphones",
+        "price": "59999"
+      },
+      "predicted_entities": {
+        "product_name": "Headphones",
+        "price": "59999"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Headphones"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "59999"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Headphones\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "59999"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Kal ki report download kar do",
+      "expected_intent": "DOWNLOAD_REPORT",
+      "predicted_intent": "DOWNLOAD_REPORT",
+      "expected_entities": {
+        "date": "yesterday"
+      },
+      "predicted_entities": {
+        "report_type": "report",
+        "date": "Kal"
+      },
+      "expected_workflow": [],
+      "predicted_workflow": null,
+      "expected_clarification": true,
+      "predicted_clarification": false,
+      "workflow_valid": null,
+      "workflow_generation_match": null,
+      "json_valid": null,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": false,
+      "clarification_correct": false
+    },
+    {
+      "instruction": "Delete Varun's customer record",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Varun"
+      },
+      "predicted_entities": {
+        "customer_name": "Varun"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Varun"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Varun\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please make Mouse cost 24999",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Mouse",
+        "price": "24999"
+      },
+      "predicted_entities": {
+        "product_name": "Mouse",
+        "price": "24999"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Mouse"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "24999"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Mouse\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "24999"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Email sales team",
+      "expected_intent": "SEND_EMAIL",
+      "predicted_intent": "SEND_EMAIL",
+      "expected_entities": {
+        "recipient": "sales team"
+      },
+      "predicted_entities": {
+        "recipient": "sales team"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "email",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "recipient",
+          "value": "sales team"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "subject",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "message",
+          "value": null
+        },
+        {
+          "action": "SUBMIT",
+          "target": "send",
+          "value": null
+        }
+      ],
+      "predicted_workflow": null,
+      "expected_clarification": true,
+      "predicted_clarification": true,
+      "workflow_valid": null,
+      "workflow_generation_match": null,
+      "json_valid": null,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Send an email to sales team",
+      "expected_intent": "SEND_EMAIL",
+      "predicted_intent": "SEND_EMAIL",
+      "expected_entities": {
+        "recipient": "sales team"
+      },
+      "predicted_entities": {
+        "recipient": "sales team"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "email",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "recipient",
+          "value": "sales team"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "subject",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "message",
+          "value": null
+        },
+        {
+          "action": "SUBMIT",
+          "target": "send",
+          "value": null
+        }
+      ],
+      "predicted_workflow": null,
+      "expected_clarification": true,
+      "predicted_clarification": true,
+      "workflow_valid": null,
+      "workflow_generation_match": null,
+      "json_valid": null,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Can you delete Pankaj?",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Pankaj"
+      },
+      "predicted_entities": {
+        "customer_name": "Pankaj"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Pankaj"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Pankaj\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Amit ko customer records se hata do",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Amit"
+      },
+      "predicted_entities": {
+        "customer_name": "Amit"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Amit"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Amit\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "image.png upload kar do",
+      "expected_intent": "UPLOAD_FILE",
+      "predicted_intent": "UPLOAD_FILE",
+      "expected_entities": {
+        "file_name": "image.png"
+      },
+      "predicted_entities": {
+        "file_name": "image.png"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "files",
+          "value": null
+        },
+        {
+          "action": "UPLOAD_FILE",
+          "target": "file-input",
+          "value": "image.png"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "files",
+            "value": null
+          },
+          {
+            "action": "UPLOAD_FILE",
+            "target": "#file-upload",
+            "value": "image.png"
+          },
+          {
+            "action": "CLICK",
+            "target": "#upload-file",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Set Monitor price to 599",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Monitor",
+        "price": "599"
+      },
+      "predicted_entities": {
+        "product_name": "Monitor",
+        "price": "599"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Monitor"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "599"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Monitor\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "599"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Tablet ka daam 18000 karna hai",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Tablet",
+        "price": "18000"
+      },
+      "predicted_entities": {
+        "product_name": "Tablet",
+        "price": "18000"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Tablet"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "18000"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Tablet\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "18000"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please delete Priya from the CRM",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Priya"
+      },
+      "predicted_entities": {
+        "customer_name": "Priya"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Priya"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Priya\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Customer form Vikram 8899776655",
+      "expected_intent": "FILL_FORM",
+      "predicted_intent": "FILL_FORM",
+      "expected_entities": {
+        "customer_name": "Vikram",
+        "phone_number": "8899776655"
+      },
+      "predicted_entities": {
+        "customer_name": "Vikram",
+        "phone_number": "8899776655"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "CLICK",
+          "target": "add-customer",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "customer-name",
+          "value": "Vikram"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "phone-number",
+          "value": "8899776655"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customer-form",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#customer-name",
+            "value": "Vikram"
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#phone-number",
+            "value": "8899776655"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-customer",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Fill the customer details: Amit, 9988776655",
+      "expected_intent": "FILL_FORM",
+      "predicted_intent": "FILL_FORM",
+      "expected_entities": {
+        "customer_name": "Amit",
+        "phone_number": "9988776655"
+      },
+      "predicted_entities": {
+        "customer_name": "Amit",
+        "phone_number": "9988776655"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "CLICK",
+          "target": "add-customer",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "customer-name",
+          "value": "Amit"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "phone-number",
+          "value": "9988776655"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customer-form",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#customer-name",
+            "value": "Amit"
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#phone-number",
+            "value": "9988776655"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-customer",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Customer records se Amit delete karo",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Amit"
+      },
+      "predicted_entities": {
+        "customer_name": "Amit"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Amit"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Amit\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please remove Vikram from customers",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Vikram"
+      },
+      "predicted_entities": {
+        "customer_name": "Vikram"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Vikram"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Vikram\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Change the price of Speaker to 50000",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Speaker",
+        "price": "50000"
+      },
+      "predicted_entities": {
+        "product_name": "Speaker",
+        "price": "50000"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Speaker"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "50000"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Speaker\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "50000"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Change Printer price to ₹4999",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Printer",
+        "price": "4999"
+      },
+      "predicted_entities": {
+        "product_name": "Printer",
+        "price": "4999"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Printer"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "4999"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Printer\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "4999"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please download daily report dated yesterday",
+      "expected_intent": "DOWNLOAD_REPORT",
+      "predicted_intent": "DOWNLOAD_REPORT",
+      "expected_entities": {
+        "report_type": "daily report",
+        "date": "yesterday"
+      },
+      "predicted_entities": {
+        "report_type": "daily report",
+        "date": "yesterday"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "reports",
+          "value": null
+        },
+        {
+          "action": "DOWNLOAD_FILE",
+          "target": "report-download",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "reports",
+            "value": null
+          },
+          {
+            "action": "DOWNLOAD_FILE",
+            "target": "#download-daily-report",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please remove Rahul from customers",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Rahul"
+      },
+      "predicted_entities": {
+        "customer_name": "Rahul"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Rahul"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Rahul\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Delete Sara from customers",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Sara"
+      },
+      "predicted_entities": {
+        "customer_name": "Sara"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Sara"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Sara\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Set Speaker price to 4999",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Speaker",
+        "price": "4999"
+      },
+      "predicted_entities": {
+        "product_name": "Speaker",
+        "price": "4999"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Speaker"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "4999"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Speaker\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "4999"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Set Tablet price to 18000",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Tablet",
+        "price": "18000"
+      },
+      "predicted_entities": {
+        "product_name": "Tablet",
+        "price": "18000"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Tablet"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "18000"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Tablet\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "18000"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Change Laptop price to ₹599",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Laptop",
+        "price": "599"
+      },
+      "predicted_entities": {
+        "product_name": "Laptop",
+        "price": "599"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Laptop"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "599"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Laptop\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "599"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Headphones ka daam 59999 karna hai",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Headphones",
+        "price": "59999"
+      },
+      "predicted_entities": {
+        "product_name": "Headphones",
+        "price": "59999"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Headphones"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "59999"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Headphones\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "59999"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Customer list se Ananya remove karo",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Ananya"
+      },
+      "predicted_entities": {
+        "customer_name": "Ananya"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Ananya"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Ananya\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "data.xlsx upload kar do",
+      "expected_intent": "UPLOAD_FILE",
+      "predicted_intent": "UPLOAD_FILE",
+      "expected_entities": {
+        "file_name": "data.xlsx"
+      },
+      "predicted_entities": {
+        "file_name": "data.xlsx"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "files",
+          "value": null
+        },
+        {
+          "action": "UPLOAD_FILE",
+          "target": "file-input",
+          "value": "data.xlsx"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "files",
+            "value": null
+          },
+          {
+            "action": "UPLOAD_FILE",
+            "target": "#file-upload",
+            "value": "data.xlsx"
+          },
+          {
+            "action": "CLICK",
+            "target": "#upload-file",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Priya ko customer list se delete karo",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Priya"
+      },
+      "predicted_entities": {
+        "customer_name": "Priya"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Priya"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Priya\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Delete Priya's customer record",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Priya"
+      },
+      "predicted_entities": {
+        "customer_name": "Priya"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Priya"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Priya\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Read the customers",
+      "expected_intent": "READ_TABLE",
+      "predicted_intent": "READ_TABLE",
+      "expected_entities": {
+        "table": "customers"
+      },
+      "predicted_entities": {
+        "table": "customers"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customers-body",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Change Tablet price to ₹24999",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Tablet",
+        "price": "24999"
+      },
+      "predicted_entities": {
+        "product_name": "Tablet",
+        "price": "24999"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Tablet"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "24999"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Tablet\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "24999"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Delete Aditya's customer record",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Aditya"
+      },
+      "predicted_entities": {
+        "customer_name": "Aditya"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Aditya"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Aditya\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Erase Riya from the customer records",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Riya"
+      },
+      "predicted_entities": {
+        "customer_name": "Riya"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Riya"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Riya\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please create a customer called Ananya with 9765432101",
+      "expected_intent": "ADD_CUSTOMER",
+      "predicted_intent": "ADD_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Ananya",
+        "phone_number": "9765432101"
+      },
+      "predicted_entities": {
+        "customer_name": "Ananya",
+        "phone_number": "9765432101"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "CLICK",
+          "target": "add-customer",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "customer-name",
+          "value": "Ananya"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "phone-number",
+          "value": "9765432101"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "#add-customer-btn",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#customer-name",
+            "value": "Ananya"
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#phone-number",
+            "value": "9765432101"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-customer",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Remove Arjun from the customer list",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Arjun"
+      },
+      "predicted_entities": {
+        "customer_name": "Arjun"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Arjun"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Arjun\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "backup.zip upload kar do",
+      "expected_intent": "UPLOAD_FILE",
+      "predicted_intent": "UPLOAD_FILE",
+      "expected_entities": {
+        "file_name": "backup.zip"
+      },
+      "predicted_entities": {
+        "file_name": "backup.zip"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "files",
+          "value": null
+        },
+        {
+          "action": "UPLOAD_FILE",
+          "target": "file-input",
+          "value": "backup.zip"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "files",
+            "value": null
+          },
+          {
+            "action": "UPLOAD_FILE",
+            "target": "#file-upload",
+            "value": "backup.zip"
+          },
+          {
+            "action": "CLICK",
+            "target": "#upload-file",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Remve Sara from customers",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Sara"
+      },
+      "predicted_entities": {
+        "customer_name": "Sara"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Sara"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Sara\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Change the price of Laptop to 599",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Laptop",
+        "price": "599"
+      },
+      "predicted_entities": {
+        "product_name": "Laptop",
+        "price": "599"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Laptop"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "599"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Laptop\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "599"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please create a customer called Sara with 9812345678",
+      "expected_intent": "ADD_CUSTOMER",
+      "predicted_intent": "ADD_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Sara",
+        "phone_number": "9812345678"
+      },
+      "predicted_entities": {
+        "customer_name": "Sara",
+        "phone_number": "9812345678"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "CLICK",
+          "target": "add-customer",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "customer-name",
+          "value": "Sara"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "phone-number",
+          "value": "9812345678"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "#add-customer-btn",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#customer-name",
+            "value": "Sara"
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#phone-number",
+            "value": "9812345678"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-customer",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Update Tablet ka price 4999 kar do",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Tablet",
+        "price": "4999"
+      },
+      "predicted_entities": {
+        "product_name": "Tablet",
+        "price": "4999"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Tablet"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "4999"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Tablet\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "4999"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Customer Meera add kar do, number 9876501234",
+      "expected_intent": "ADD_CUSTOMER",
+      "predicted_intent": "ADD_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Meera",
+        "phone_number": "9876501234"
+      },
+      "predicted_entities": {
+        "customer_name": "Meera",
+        "phone_number": "9876501234"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "CLICK",
+          "target": "add-customer",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "customer-name",
+          "value": "Meera"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "phone-number",
+          "value": "9876501234"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "#add-customer-btn",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#customer-name",
+            "value": "Meera"
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#phone-number",
+            "value": "9876501234"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-customer",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Karan ka form fill karo phone 9012345678",
+      "expected_intent": "FILL_FORM",
+      "predicted_intent": "FILL_FORM",
+      "expected_entities": {
+        "customer_name": "Karan",
+        "phone_number": "9012345678"
+      },
+      "predicted_entities": {
+        "customer_name": "Karan",
+        "phone_number": "9012345678"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "CLICK",
+          "target": "add-customer",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "customer-name",
+          "value": "Karan"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "phone-number",
+          "value": "9012345678"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customer-form",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#customer-name",
+            "value": "Karan"
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#phone-number",
+            "value": "9012345678"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-customer",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Downlaod todays sales report",
+      "expected_intent": "DOWNLOAD_REPORT",
+      "predicted_intent": "DOWNLOAD_REPORT",
+      "expected_entities": {
+        "report_type": "sales report",
+        "date": "today"
+      },
+      "predicted_entities": {
+        "report_type": "sales report",
+        "date": "todays"
+      },
+      "expected_workflow": [],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "reports",
+            "value": null
+          },
+          {
+            "action": "DOWNLOAD_FILE",
+            "target": "#download-sales-report",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": false,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Rahul naam ka customer add karo",
+      "expected_intent": "ADD_CUSTOMER",
+      "predicted_intent": "ADD_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Rahul"
+      },
+      "predicted_entities": {
+        "customer_name": "Rahul"
+      },
+      "expected_workflow": [],
+      "predicted_workflow": null,
+      "expected_clarification": true,
+      "predicted_clarification": true,
+      "workflow_valid": null,
+      "workflow_generation_match": null,
+      "json_valid": null,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Delete customer Aditya",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Aditya"
+      },
+      "predicted_entities": {
+        "customer_name": "Aditya"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Aditya"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Aditya\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Take Karan off the customer list",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Karan"
+      },
+      "predicted_entities": {
+        "customer_name": "Karan"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Karan"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Karan\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Fill customer form with Karan, phone 9012345678",
+      "expected_intent": "FILL_FORM",
+      "predicted_intent": "FILL_FORM",
+      "expected_entities": {
+        "customer_name": "Karan",
+        "phone_number": "9012345678"
+      },
+      "predicted_entities": {
+        "customer_name": "Karan",
+        "phone_number": "9012345678"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "CLICK",
+          "target": "add-customer",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "customer-name",
+          "value": "Karan"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "phone-number",
+          "value": "9012345678"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customer-form",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#customer-name",
+            "value": "Karan"
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#phone-number",
+            "value": "9012345678"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-customer",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Vikram ka form fill karo phone 8899776655",
+      "expected_intent": "FILL_FORM",
+      "predicted_intent": "FILL_FORM",
+      "expected_entities": {
+        "customer_name": "Vikram",
+        "phone_number": "8899776655"
+      },
+      "predicted_entities": {
+        "customer_name": "Vikram",
+        "phone_number": "8899776655"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "CLICK",
+          "target": "add-customer",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "customer-name",
+          "value": "Vikram"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "phone-number",
+          "value": "8899776655"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customer-form",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#customer-name",
+            "value": "Vikram"
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#phone-number",
+            "value": "8899776655"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-customer",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please make iPhone cost 24999",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "iPhone",
+        "price": "24999"
+      },
+      "predicted_entities": {
+        "product_name": "iPhone",
+        "price": "24999"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "iPhone"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "24999"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"iPhone\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "24999"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Change the price of Tablet to 18000",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Tablet",
+        "price": "18000"
+      },
+      "predicted_entities": {
+        "product_name": "Tablet",
+        "price": "18000"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Tablet"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "18000"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Tablet\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "18000"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Mail bhej do accounts team ko",
+      "expected_intent": "SEND_EMAIL",
+      "predicted_intent": "SEND_EMAIL",
+      "expected_entities": {
+        "recipient": "accounts team"
+      },
+      "predicted_entities": {
+        "recipient": "accounts team"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "email",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "recipient",
+          "value": "accounts team"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "subject",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "message",
+          "value": null
+        },
+        {
+          "action": "SUBMIT",
+          "target": "send",
+          "value": null
+        }
+      ],
+      "predicted_workflow": null,
+      "expected_clarification": true,
+      "predicted_clarification": true,
+      "workflow_valid": null,
+      "workflow_generation_match": null,
+      "json_valid": null,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "today ka daily report download karo",
+      "expected_intent": "DOWNLOAD_REPORT",
+      "predicted_intent": "DOWNLOAD_REPORT",
+      "expected_entities": {
+        "report_type": "daily report",
+        "date": "today"
+      },
+      "predicted_entities": {
+        "report_type": "daily report",
+        "date": "today"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "reports",
+          "value": null
+        },
+        {
+          "action": "DOWNLOAD_FILE",
+          "target": "report-download",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "reports",
+            "value": null
+          },
+          {
+            "action": "DOWNLOAD_FILE",
+            "target": "#download-daily-report",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Rahul naam ka customer bana do, mobile 9876543210 hai",
+      "expected_intent": "ADD_CUSTOMER",
+      "predicted_intent": "ADD_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Rahul",
+        "phone_number": "9876543210"
+      },
+      "predicted_entities": {
+        "customer_name": "Rahul",
+        "phone_number": "9876543210"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "CLICK",
+          "target": "add-customer",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "customer-name",
+          "value": "Rahul"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "phone-number",
+          "value": "9876543210"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "#add-customer-btn",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#customer-name",
+            "value": "Rahul"
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#phone-number",
+            "value": "9876543210"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-customer",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please remove Nisha from customers",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Nisha"
+      },
+      "predicted_entities": {
+        "customer_name": "Nisha"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Nisha"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Nisha\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Document upload kar do",
+      "expected_intent": "UPLOAD_FILE",
+      "predicted_intent": "UPLOAD_FILE",
+      "expected_entities": {},
+      "predicted_entities": {},
+      "expected_workflow": [],
+      "predicted_workflow": null,
+      "expected_clarification": true,
+      "predicted_clarification": true,
+      "workflow_valid": null,
+      "workflow_generation_match": null,
+      "json_valid": null,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Get sales report for Monday",
+      "expected_intent": "DOWNLOAD_REPORT",
+      "predicted_intent": "DOWNLOAD_REPORT",
+      "expected_entities": {
+        "report_type": "sales report",
+        "date": "Monday"
+      },
+      "predicted_entities": {
+        "report_type": "sales report",
+        "date": "Monday"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "reports",
+          "value": null
+        },
+        {
+          "action": "DOWNLOAD_FILE",
+          "target": "report-download",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "reports",
+            "value": null
+          },
+          {
+            "action": "DOWNLOAD_FILE",
+            "target": "#download-sales-report",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Change Laptop price to ₹18000",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Laptop",
+        "price": "18000"
+      },
+      "predicted_entities": {
+        "product_name": "Laptop",
+        "price": "18000"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Laptop"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "18000"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Laptop\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "18000"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Ananya ko customer database se hata do",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Ananya"
+      },
+      "predicted_entities": {
+        "customer_name": "Ananya"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Ananya"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Ananya\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Change the price of Mouse to 50000",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Mouse",
+        "price": "50000"
+      },
+      "predicted_entities": {
+        "product_name": "Mouse",
+        "price": "50000"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Mouse"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "50000"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Mouse\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "50000"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Take Aditya off the customer list",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Aditya"
+      },
+      "predicted_entities": {
+        "customer_name": "Aditya"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Aditya"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Aditya\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please create a customer called Rohan with 9345678901",
+      "expected_intent": "ADD_CUSTOMER",
+      "predicted_intent": "ADD_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Rohan",
+        "phone_number": "9345678901"
+      },
+      "predicted_entities": {
+        "customer_name": "Rohan",
+        "phone_number": "9345678901"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "CLICK",
+          "target": "add-customer",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "customer-name",
+          "value": "Rohan"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "phone-number",
+          "value": "9345678901"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "#add-customer-btn",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#customer-name",
+            "value": "Rohan"
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#phone-number",
+            "value": "9345678901"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-customer",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Delete Rohan's customer record",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Rohan"
+      },
+      "predicted_entities": {
+        "customer_name": "Rohan"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Rohan"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Rohan\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Rohan ko customer list se delete karo",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Rohan"
+      },
+      "predicted_entities": {
+        "customer_name": "Rohan"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Rohan"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Rohan\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Change Mouse price to ₹4999",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Mouse",
+        "price": "4999"
+      },
+      "predicted_entities": {
+        "product_name": "Mouse",
+        "price": "4999"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Mouse"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "4999"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Mouse\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "4999"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please download monthly report dated this month",
+      "expected_intent": "DOWNLOAD_REPORT",
+      "predicted_intent": "DOWNLOAD_REPORT",
+      "expected_entities": {
+        "report_type": "monthly report",
+        "date": "this month"
+      },
+      "predicted_entities": {
+        "report_type": "monthly report",
+        "date": "this month"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "reports",
+          "value": null
+        },
+        {
+          "action": "DOWNLOAD_FILE",
+          "target": "report-download",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "reports",
+            "value": null
+          },
+          {
+            "action": "DOWNLOAD_FILE",
+            "target": "#download-monthly-report",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Set Mouse price to 24999",
+      "expected_intent": "UPDATE_PRODUCT",
+      "predicted_intent": "UPDATE_PRODUCT",
+      "expected_entities": {
+        "product_name": "Mouse",
+        "price": "24999"
+      },
+      "predicted_entities": {
+        "product_name": "Mouse",
+        "price": "24999"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "products",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "product-name",
+          "value": "Mouse"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "price",
+          "value": "24999"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button.edit[data-product-name=\"Mouse\"]",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#product-price",
+            "value": "24999"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-product",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "products",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#product-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Get daily report for Monday",
+      "expected_intent": "DOWNLOAD_REPORT",
+      "predicted_intent": "DOWNLOAD_REPORT",
+      "expected_entities": {
+        "report_type": "daily report",
+        "date": "Monday"
+      },
+      "predicted_entities": {
+        "report_type": "daily report",
+        "date": "Monday"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "reports",
+          "value": null
+        },
+        {
+          "action": "DOWNLOAD_FILE",
+          "target": "report-download",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "reports",
+            "value": null
+          },
+          {
+            "action": "DOWNLOAD_FILE",
+            "target": "#download-daily-report",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Please delete Ananya from the CRM",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Ananya"
+      },
+      "predicted_entities": {
+        "customer_name": "Ananya"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Ananya"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Ananya\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Meera ko customer records se hata do",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Meera"
+      },
+      "predicted_entities": {
+        "customer_name": "Meera"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Meera"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Meera\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "New customer Meera, phone number 9876501234",
+      "expected_intent": "ADD_CUSTOMER",
+      "predicted_intent": "ADD_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Meera",
+        "phone_number": "9876501234"
+      },
+      "predicted_entities": {
+        "customer_name": "Meera",
+        "phone_number": "9876501234"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "CLICK",
+          "target": "add-customer",
+          "value": null
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "customer-name",
+          "value": "Meera"
+        },
+        {
+          "action": "ENTER_TEXT",
+          "target": "phone-number",
+          "value": "9876501234"
+        },
+        {
+          "action": "SUBMIT",
+          "target": "save",
+          "value": null
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "#add-customer-btn",
+            "value": null
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#customer-name",
+            "value": "Meera"
+          },
+          {
+            "action": "ENTER_TEXT",
+            "target": "#phone-number",
+            "value": "9876501234"
+          },
+          {
+            "action": "SUBMIT",
+            "target": "#save-customer",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    },
+    {
+      "instruction": "Karan ka account delete karo",
+      "expected_intent": "DELETE_CUSTOMER",
+      "predicted_intent": "DELETE_CUSTOMER",
+      "expected_entities": {
+        "customer_name": "Karan"
+      },
+      "predicted_entities": {
+        "customer_name": "Karan"
+      },
+      "expected_workflow": [
+        {
+          "action": "OPEN_PAGE",
+          "target": "customers",
+          "value": null
+        },
+        {
+          "action": "READ_TABLE",
+          "target": "#customer-table-body",
+          "value": null
+        },
+        {
+          "action": "DELETE",
+          "target": ".delete-button",
+          "value": "Karan"
+        }
+      ],
+      "predicted_workflow": {
+        "steps": [
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "CLICK",
+            "target": "button[data-customer-name*=\"Karan\"]",
+            "value": null
+          },
+          {
+            "action": "DELETE",
+            "target": "#confirm-delete-btn",
+            "value": null
+          },
+          {
+            "action": "OPEN_PAGE",
+            "target": "customers",
+            "value": null
+          },
+          {
+            "action": "READ_TABLE",
+            "target": "#customer-table-body",
+            "value": null
+          }
+        ]
+      },
+      "expected_clarification": false,
+      "predicted_clarification": false,
+      "workflow_valid": true,
+      "workflow_generation_match": false,
+      "json_valid": true,
+      "unsupported_actions": [],
+      "hallucinated_steps": [],
+      "validation_errors": [],
+      "workflow_generation_error": null,
+      "intent_correct": true,
+      "entity_correct": true,
+      "clarification_correct": true
+    }
+  ]
+}
