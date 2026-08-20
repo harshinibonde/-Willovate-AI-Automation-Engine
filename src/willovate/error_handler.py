@@ -13,6 +13,8 @@ class AutomationErrorHandler:
             suggestion = "The requested item was not found. Verify the item name and try again."
         elif "File not found" in error_text:
             suggestion = "The file could not be found. Check the file path and try again."
+        elif "Tesseract" in error_text or "OCR" in error_text:
+            suggestion = "Tesseract OCR engine is missing. Install Tesseract on your OS or disable visual OCR verification."
         elif "Unsupported action" in error_text:
             suggestion = "The workflow contains an unsupported action. Generate a supported action instead."
         else:

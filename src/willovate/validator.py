@@ -15,6 +15,8 @@ REQUIRED_PARAMS = {
     ActionType.WAIT: ["target"],
     ActionType.SUBMIT: ["target"],
     ActionType.TAKE_SCREENSHOT: ["target"],
+    ActionType.UPDATE_TEXT: ["target", "value"],
+    ActionType.SET_ATTRIBUTE: ["target", "value"],
 }
 
 

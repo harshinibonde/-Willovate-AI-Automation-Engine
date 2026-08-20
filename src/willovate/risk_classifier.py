@@ -17,6 +17,10 @@ class RiskClassifier:
                 if "send_email" not in risk_types:
                     risk_types.append("send_email")
 
+            elif step.action in (ActionType.UPDATE_TEXT, ActionType.SET_ATTRIBUTE):
+                if "webpage_modification" not in risk_types:
+                    risk_types.append("webpage_modification")
+
         return {
             "is_risky": len(risk_types) > 0,
             "risk_types": risk_types,

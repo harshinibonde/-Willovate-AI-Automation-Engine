@@ -66,6 +66,9 @@ Supported intents:
 - READ_TABLE
 - SEND_EMAIL
 - DELETE_CUSTOMER
+- CUSTOMIZE_PAGE
+- UPLOAD_IMAGE
+- CREATE_OFFER
 
 Return ONLY valid JSON matching this structure:
 
@@ -115,6 +118,22 @@ For SEND_EMAIL:
 - subject
 - body
 
+For CUSTOMIZE_PAGE:
+- target_element (what to change: "heading", "subtitle", "banner_text", "announcement", "contact_number")
+- new_value (the new text to set)
+- visual_theme (optional: any visual/seasonal theme keywords the user mentions, e.g. "summer beach ocean waves", "christmas snow red green", "winter frost", "festival celebration". Extract ALL visual/theme descriptors into this single field as a comma-separated string.)
+
+For UPLOAD_IMAGE:
+- file_name (the image file name)
+- target_location (where to place it: "logo", "banner", "product_image")
+
+For CREATE_OFFER:
+- offer_name
+- discount (e.g. "20%", "30%")
+- category (optional, e.g. "Electronics", "Software")
+- end_date (optional)
+- description (optional)
+
 IMPORTANT RULES:
 
 - Use the exact entity names listed above.
@@ -122,6 +141,14 @@ IMPORTANT RULES:
 - For a customer phone number, ALWAYS use "phone_number", never "phone".
 - For a product, ALWAYS use "product_name", never "product".
 - For a report type, ALWAYS use "report_type", never "report_name".
+- For webpage customization, ALWAYS use "target_element" and "new_value".
+- If the user describes visual styles, colors, seasons, or decorative elements (e.g. "summer vibes", "beach", "christmas", "snow", "red and green"), extract them into "visual_theme".
+- For image upload placement, ALWAYS use "target_location".
+- For offers, ALWAYS use "offer_name" and "discount".
+- If the user says "change the heading" or "update the title", the intent is CUSTOMIZE_PAGE.
+- If the user says "create a summer/christmas/winter/festival banner" or mentions visual themes with a heading change, the intent is CUSTOMIZE_PAGE.
+- If the user says "upload logo" or "replace banner image", the intent is UPLOAD_IMAGE.
+- If the user says "create offer" or "add discount" or "add sale", the intent is CREATE_OFFER.
 - Extract entities ONLY from the user's instruction.
 - Never invent entity values.
 - If an entity is not present in the instruction, do not include it.
@@ -134,12 +161,28 @@ IMPORTANT RULES:
 - Status is optional.
 """ + self._build_reference_prompt()
 
-        raw_response = self.llm.chat(
-            system_prompt=system_prompt,
-            user_message=user_instruction,
-        )
+        try:
+            raw_response = self.llm.chat(
+                system_prompt=system_prompt,
+                user_message=user_instruction,
+            )
+            result = IntentDetectionResponse.model_validate_json(raw_response)
+        except Exception as err:
+            lower = user_instruction.lower()
+            detected_intent = "CUSTOMIZE_PAGE"
+            if "logo" in lower or "upload image" in lower:
+                detected_intent = "UPLOAD_IMAGE"
+            elif "offer" in lower or "discount" in lower or "30% off" in lower:
+                detected_intent = "CREATE_OFFER"
+            elif "customer" in lower and "delete" in lower:
+                detected_intent = "DELETE_CUSTOMER"
+            elif "customer" in lower:
+                detected_intent = "ADD_CUSTOMER"
 
-        result = IntentDetectionResponse.model_validate_json(raw_response)
+            result = IntentDetectionResponse(
+                intent=detected_intent,
+                entities={}
+            )
 
         entities = dict(result.entities)
 
@@ -243,11 +286,94 @@ IMPORTANT RULES:
                 if date:
                     normalized_entities["date"] = date
 
+        elif intent == "CUSTOMIZE_PAGE":
+            if "target_element" not in normalized_entities:
+                target = self._extract_page_target(
+                    lower_instruction
+                )
+                if target:
+                    normalized_entities["target_element"] = target
+
+            normalized_entities = self._clean_customize_entities(
+                normalized_entities,
+                instruction
+            )
+
+        elif intent == "CREATE_OFFER":
+            if "discount" not in normalized_entities:
+                discount_match = re.search(
+                    r"(\d+)\s*%",
+                    instruction,
+                )
+                if discount_match:
+                    normalized_entities["discount"] = (
+                        discount_match.group(1) + "%"
+                    )
+
         return result.model_copy(
             update={
                 "entities": normalized_entities
             }
         )
+
+    @staticmethod
+    def _clean_customize_entities(
+        entities: dict,
+        instruction: str,
+    ) -> dict:
+        target = entities.get("target_element", "heading")
+        raw_val = str(entities.get("new_value", "")).strip()
+
+        # If LLM didn't extract new_value or extracted the entire user prompt, parse from instruction
+        if not raw_val or raw_val.lower() == instruction.lower():
+            match = re.search(
+                r"\b(?:change|update|set|make|edit|replace)\s+(?:the\s+)?(?:homepage\s+|website\s+|store\s+)?(?:heading|title|subtitle|banner\s+text|announcement)?\s+(?:to|as)\s+[\"']?([^\"'\n]+?)[\"']?(?=\s+(?:with|featuring|in|having|and)\b|$)",
+                instruction,
+                flags=re.IGNORECASE,
+            )
+            if match:
+                raw_val = match.group(1).strip()
+
+        if raw_val:
+            # 1. Remove command prefixes if present in raw_val
+            prefix_pattern = r"^(?:change|update|set|make|edit|replace)\s+(?:the\s+)?(?:homepage\s+|website\s+|store\s+)?(?:heading|title|subtitle|banner\s+text|announcement|contact\s+number)?\s+(?:to|as)\s+"
+            raw_val = re.sub(
+                prefix_pattern,
+                "",
+                raw_val,
+                flags=re.IGNORECASE,
+            ).strip(" \"'")
+
+            # 2. Separate theme/visual descriptors if present (e.g., "... with summer vibes...", "... wiht gradient of indian flag...")
+            split_pattern = r"\s+(?:with|wiht|w/|featuring|including|having|in|and)\s+(?:a\s+|the\s+)?(?:summer|winter|christmas|holiday|festival|spring|autumn|fall|warm|cool|bright|dark|light|beach|ocean|waves|sun|shells|vibes|colors|theme|style|aesthetic|design|background|mood|look|gradient|indian|flag|tricolor)\b.*"
+            parts = re.split(
+                split_pattern,
+                raw_val,
+                flags=re.IGNORECASE,
+            )
+
+            clean_val = parts[0].strip(" \"'")
+
+            if len(parts) > 1 and not entities.get("visual_theme"):
+                theme_clause = raw_val[len(clean_val):].strip()
+                theme_clause = re.sub(
+                    r"^(?:with|wiht|w/|featuring|including|having|in|and)\s+",
+                    "",
+                    theme_clause,
+                    flags=re.IGNORECASE,
+                )
+                entities["visual_theme"] = theme_clause
+
+            entities["new_value"] = clean_val
+
+        if not entities.get("visual_theme"):
+            theme_str = IntentDetector._extract_visual_theme(
+                instruction.lower()
+            )
+            if theme_str:
+                entities["visual_theme"] = theme_str
+
+        return entities
 
     @staticmethod
     def _extract_customer_name(instruction: str) -> str | None:
@@ -441,4 +567,38 @@ IMPORTANT RULES:
         if re.search(r"\bkal\b|कल", instruction):
             return "yesterday"
 
+        return None
+
+    @staticmethod
+    def _extract_page_target(
+        instruction: str,
+    ) -> str | None:
+        targets = [
+            ("heading", "heading"),
+            ("title", "heading"),
+            ("subtitle", "subtitle"),
+            ("banner text", "banner_text"),
+            ("banner", "banner_text"),
+            ("announcement", "announcement"),
+            ("contact number", "contact_number"),
+            ("contact", "contact_number"),
+        ]
+
+        for keyword, canonical in targets:
+            if keyword in instruction:
+                return canonical
+
+        return None
+
+    @staticmethod
+    def _extract_visual_theme(instruction: str) -> str | None:
+        keywords = [
+            "summer", "beach", "ocean", "waves", "sun", "tropical", "shells", "seashell",
+            "christmas", "snow", "lights", "festive", "winter", "ice",
+            "festival", "diwali", "diya", "celebration", "sparkle",
+            "red and green", "golden", "sunset", "warm colors", "neon", "cyber"
+        ]
+        matches = [kw for kw in keywords if kw in instruction.lower()]
+        if matches:
+            return ", ".join(matches)
         return None

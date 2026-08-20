@@ -3,7 +3,10 @@ from io import BytesIO
 import csv
 from datetime import datetime
 import os
+import sys
 from werkzeug.utils import secure_filename
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
+from willovate.banner_theme import BannerThemeManager
 
 app = Flask(__name__)
 app.secret_key = "willovate-crm-demo-key"
@@ -35,7 +38,11 @@ def inject_counts():
 
 @app.route("/")
 def dashboard():
-    return render_template("dashboard.html")
+    return render_template(
+        "dashboard.html",
+        homepage_settings=homepage_settings,
+        offers=offers_list
+    )
 
 @app.route("/customers")
 def customer_list():
@@ -502,6 +509,142 @@ def files():
         })
 
     return render_template("files.html")
+
+
+homepage_settings = {
+    "heading": "Mega Summer Sale",
+    "subtitle": "Hot summer discounts, sun-filled seasonal deals, and exclusive storewide savings across all categories!",
+    "banner_text": "",
+    "announcement": "⚡ Special Announcement: Free Shipping on Orders Over $50",
+    "contact_number": "+1 (800) 555-0199",
+    "logo_url": None,
+    "banner_url": None,
+    "banner_style": "radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.85) 0%, transparent 60%), linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 50%, #e0f7fa 100%)",
+    "banner_theme": "default",
+    "announcement_bg": "#e0f2fe",
+    "announcement_color": "#0284c7",
+    "heading_color": "#1e3a8a",
+    "banner_text_color": "#0369a1",
+    "badge_text": "",
+}
+
+offers_list = [
+    {
+        "id": 1,
+        "offer_name": "Summer Special",
+        "discount": "20% OFF",
+        "category": "Software",
+        "end_date": "2026-09-01",
+        "description": "Exclusive discount on all software licenses.",
+    }
+]
+
+
+@app.context_processor
+def inject_homepage_settings():
+    if not homepage_settings.get("subtitle") or "Empowering your business" in homepage_settings["subtitle"]:
+        homepage_settings["subtitle"] = BannerThemeManager.generate_sale_description(homepage_settings.get("heading", ""))
+    return dict(
+        homepage_settings=homepage_settings,
+        offers=offers_list,
+        get_sale_description=BannerThemeManager.generate_sale_description
+    )
+
+
+@app.route("/homepage", methods=["GET", "POST"])
+def homepage():
+    if request.method == "POST":
+        upload_dir = os.path.join(app.root_path, "static", "uploads")
+        os.makedirs(upload_dir, exist_ok=True)
+
+        logo_file = request.files.get("logo_file")
+        if logo_file and logo_file.filename:
+            filename = secure_filename(logo_file.filename)
+            logo_file.save(os.path.join(upload_dir, filename))
+            homepage_settings["logo_url"] = f"/static/uploads/{filename}"
+
+        banner_file = request.files.get("banner_file")
+        if banner_file and banner_file.filename:
+            filename = secure_filename(banner_file.filename)
+            banner_file.save(os.path.join(upload_dir, filename))
+            homepage_settings["banner_url"] = f"/static/uploads/{filename}"
+
+        if request.form.get("heading"):
+            new_heading = request.form.get("heading").strip()
+            homepage_settings["heading"] = new_heading
+            
+            sub = request.form.get("subtitle", "").strip()
+            if not sub or "Empowering your business" in sub:
+                homepage_settings["subtitle"] = BannerThemeManager.generate_sale_description(new_heading)
+            else:
+                homepage_settings["subtitle"] = sub
+
+        if request.form.get("banner_text"):
+            homepage_settings["banner_text"] = request.form.get("banner_text")
+        if request.form.get("announcement"):
+            homepage_settings["announcement"] = request.form.get("announcement")
+        if request.form.get("contact_number"):
+            homepage_settings["contact_number"] = request.form.get("contact_number")
+        if request.form.get("banner_style"):
+            homepage_settings["banner_style"] = request.form.get("banner_style")
+        if request.form.get("banner_theme"):
+            homepage_settings["banner_theme"] = request.form.get("banner_theme")
+        if request.form.get("announcement_bg"):
+            homepage_settings["announcement_bg"] = request.form.get("announcement_bg")
+        if request.form.get("announcement_color"):
+            homepage_settings["announcement_color"] = request.form.get("announcement_color")
+        if request.form.get("heading_color"):
+            homepage_settings["heading_color"] = request.form.get("heading_color")
+        if request.form.get("banner_text_color"):
+            homepage_settings["banner_text_color"] = request.form.get("banner_text_color")
+
+        return render_template(
+            "homepage.html", homepage_settings=homepage_settings
+        )
+
+    return render_template(
+        "homepage.html", homepage_settings=homepage_settings
+    )
+
+
+@app.route("/offers", methods=["GET"])
+def offers():
+    return render_template("offers.html", offers=offers_list)
+
+
+@app.route("/offers/add", methods=["POST"])
+def add_offer():
+    offer_name = request.form.get("offer_name")
+    discount = request.form.get("discount")
+    category = request.form.get("category", "All Categories")
+    end_date = request.form.get("end_date")
+    description = request.form.get("description")
+
+    if not offer_name or not discount:
+        return jsonify({
+            "success": False,
+            "message": "Offer name and discount are required."
+        }), 400
+
+    new_offer = {
+        "id": len(offers_list) + 1,
+        "offer_name": offer_name,
+        "discount": discount,
+        "category": category,
+        "end_date": end_date,
+        "description": description,
+    }
+    offers_list.append(new_offer)
+
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        return jsonify({
+            "success": True,
+            "offer": new_offer,
+            "message": f"Offer '{offer_name}' created successfully."
+        })
+
+    return redirect(url_for("offers"))
+
 
 if __name__ == "__main__":
     app.run(

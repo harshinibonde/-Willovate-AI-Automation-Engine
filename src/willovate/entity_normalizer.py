@@ -28,6 +28,25 @@ class EntityNormalizer:
         "table_name": "table",
 
         "file": "file_name",
+        "image": "file_name",
+        "image_file": "file_name",
+
+        "heading": "target_element",
+        "title": "target_element",
+        "element": "target_element",
+
+        "text": "new_value",
+        "new_text": "new_value",
+
+        "location": "target_location",
+        "placement": "target_location",
+
+        "offer": "offer_name",
+        "promo": "offer_name",
+        "promotion": "offer_name",
+
+        "percent": "discount",
+        "discount_percent": "discount",
     }
 
     VALUE_NORMALIZERS = {

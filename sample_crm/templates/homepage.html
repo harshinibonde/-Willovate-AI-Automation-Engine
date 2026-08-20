@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Homepage Customization | Willovate CRM{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <div class="breadcrumb">Workspace / Homepage</div>
+        <h1>Website Homepage Customization</h1>
+        <p>Manage customer-facing store page layout, announcements, and banners.</p>
+    </div>
+</div>
+
+<section class="form-layout">
+    <div class="panel form-panel">
+        <div class="panel-header">
+            <div>
+                <h2>Storefront Banner & Branding</h2>
+                <p>Live preview of hero elements on your main website.</p>
+            </div>
+        </div>
+
+        <!-- 2. LARGE HERO / BRAND BANNER -->
+        {% include 'components/hero_banner.html' %}
+
+        <form method="POST" action="/homepage" enctype="multipart/form-data" id="homepage-form" onsubmit="syncTextBeforeSubmit()">
+            <input type="hidden" name="heading" id="hidden-heading">
+            <input type="hidden" name="subtitle" id="hidden-subtitle">
+            <input type="hidden" name="banner_text" id="hidden-banner_text">
+            <input type="hidden" name="announcement" id="hidden-announcement">
+            <input type="hidden" name="contact_number" id="hidden-contact_number">
+            <input type="hidden" name="banner_style" id="hidden-banner_style" value="{{ homepage_settings.banner_style or '' }}">
+            <input type="hidden" name="banner_theme" id="hidden-banner_theme" value="{{ homepage_settings.banner_theme or '' }}">
+            <input type="hidden" name="badge_text" id="hidden-badge_text" value="{{ homepage_settings.badge_text or '' }}">
+
+            <div class="form-group">
+                <label for="logo-upload">Upload Logo Image</label>
+                <input type="file" id="logo-upload" name="logo_file" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="banner-upload">Upload Banner Image</label>
+                <input type="file" id="banner-upload" name="banner_file" accept="image/*">
+            </div>
+
+            <div class="form-footer">
+                <button type="submit" class="button button-primary" id="save-homepage">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script>
+function syncTextBeforeSubmit() {
+    document.getElementById('hidden-heading').value = document.getElementById('hero-heading').textContent.trim();
+    document.getElementById('hidden-subtitle').value = document.getElementById('hero-subtitle').textContent.trim();
+    document.getElementById('hidden-banner_text').value = document.getElementById('hero-banner-text').textContent.trim();
+    document.getElementById('hidden-announcement').value = document.getElementById('hero-announcement').textContent.trim();
+    document.getElementById('hidden-contact_number').value = document.getElementById('contact-number').textContent.trim();
+}
+</script>
+{% endblock %}

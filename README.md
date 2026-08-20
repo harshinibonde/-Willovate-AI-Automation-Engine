@@ -1,319 +1,90 @@
-````markdown
-# Willovate AI Automation Engine
+# Willovate AI Automation Engine & Sample CRM
 
 An AI-powered business automation engine that converts natural-language instructions into validated browser workflows and executes them on a sample CRM application.
 
-Instead of manually navigating a CRM, users can simply describe what they want:
+Instead of manually navigating the CRM interface, users can issue natural-language commands to manage business operations, update products and customers, or redesign storefront branding:
 
-> Add Priya Mehta as a customer with phone number XXXXXXXXXX
+> *"Change the homepage heading to Mega Summer Sale with summer vibes like beaches, shells, sun, and ocean waves."*
 
-This engine understands the instruction, generates the required workflow, validates it, checks for risk, and executes it through Playwright.
-
----
-
-## Features
-
-- Natural-language instruction understanding
-- Intent detection and entity extraction
-- Missing-information detection
-- Multi-step workflow planning
-- Structured JSON workflow generation
-- Workflow validation
-- Risk detection and user confirmation
-- Browser automation with Playwright
-- Error analysis, retry and safe failure handling
-- English, Hindi and Hinglish support
-- Customer and product management
-- Report download
-- File upload/download
-- Email automation
-- Table reading and verification
-- Evaluation pipeline
+The engine understands the instruction, synthesizes visual banner themes, generates executable Playwright browser actions, checks for operational risk, and updates the CRM UI seamlessly.
 
 ---
 
-## Architecture
+## Key Features
 
-```text
-                 Natural-Language Instruction
-                            |
-                            v
-                    Intent Detection
-                            |
-                            v
-                    Entity Extraction
-                            |
-                            v
-                 Required Info Check
-                            |
-                            v
-                  Workflow Generation
-                            |
-                            v
-                  Workflow Validation
-                            |
-                            v
-                     Risk Detection
-                       /        \
-                    Risky       Safe
-                      |           |
-                      v           |
-               User Confirmation |
-                      |           |
-                      +-----+-----+
-                            |
-                            v
-                   Playwright Runner
-                            |
-                            v
-                      Sample CRM
-                            |
-                            v
-                    Verified Result
-````
+- **Natural-Language Storefront Customization**: Redesign storefront layout, headings, and promotional banners using natural-language instructions.
+- **Dynamic Prompt-Based Banner Themes**: Automatically translates prompt keywords into CSS background gradients and color schemes for themes including:
+  - *Summer, beaches, ocean, sun, and tropical vibes*
+  - *Independence Day, patriotic, saffron & green tricolor themes*
+  - *Festivals, Diwali, celebrations, and festive sparkle*
+  - *Christmas, winter, snow, and holiday presets*
+- **AI-Generated Sale Descriptions**: Dynamically generates contextual promotional subheadings based on the sale heading (e.g. *"Mega Summer Sale"*, *"Independence Day Sale"*), replacing generic boilerplate text.
+- **Live Active-Offer Marquee**: Displays a continuously scrolling marquee ticker of active promotional offers on the Dashboard, updated in real time.
+- **Synchronized Previews & Shared State**: Single-source-of-truth state architecture ensuring instant synchronization between the Homepage Customization page and the main Dashboard hero banner.
+- **Store Branding & Media Uploads**: Support for custom logo and banner image uploads, dynamically rendered in the sidebar brand mark and storefront hero banner.
+- **Customer & Product Automation**: Natural-language commands to add, search, update, or delete customers and products.
+- **Risk Classification & Confirmation**: Identifies destructive actions (e.g., deletions) and requests user confirmation prior to execution.
+- **Playwright Automation & Visual OCR**: Headless browser automation combined with Tesseract OCR screenshot verification to confirm page state updates visually.
 
 ---
 
-## Workflow
-
-### 1. Intent Detection
-
-The natural-language instruction is converted into a structured intent.
+## Architecture & Workflow
 
 ```text
-Input:
-Add Priya Mehta as a customer with phone number XXXXXXXXXX
+Natural-Language Instruction
+           │
+           ▼
+   Intent Detection & Entity Extraction
+           │
+           ▼
+ Dynamic Theme & Sale Description Generator
+           │
+           ▼
+   Required Information & Risk Check
+           │
+           ▼
+ Structured Workflow Generation & Validation
+           │
+           ▼
+     Playwright Browser Runner
+           │
+           ▼
+ Sample CRM State Update (homepage_settings / offers_list)
+           │
+           ▼
+ Visual OCR Verification & Synchronized UI Preview
 ```
 
-```json
-{
-  "intent": "ADD_CUSTOMER",
-  "entities": {
-    "customer_name": "Priya Mehta",
-    "phone_number": "XXXXXXXXXX"
-  }
-}
-```
+---
 
-### 2. Missing Information
+## State Architecture: Single Source of Truth
 
-Checks whether all information required for the operation is available.
+The sample CRM uses centralized in-memory repositories in `sample_crm/app.py` made available globally to all Jinja2 templates via Flask `@app.context_processor`:
 
-If information is missing, the system asks the user instead of inventing values.
+- **`homepage_settings`**: Stores the active storefront configuration (heading, dynamic sale description, special announcement, contact number, uploaded logo/banner paths, and CSS gradient styles). Any change on `/homepage` or via natural-language automation immediately updates the Dashboard (`/`) banner preview.
+- **`offers_list`**: Stores active promotional campaigns (offer name, discount percentage, category, valid end date, description). Active offers automatically render in the Offers list and in the live Dashboard marquee ticker without hardcoded values or duplicated percentages.
 
-### 3. Workflow Generation
+---
 
-The intent and entities are converted into executable browser actions.
+## Technologies Used
 
-```text
-1. OPEN_PAGE | customers
-2. CLICK | #add-customer-btn
-3. ENTER_TEXT | #customer-name | Pankaj Koche
-4. ENTER_TEXT | #phone-number | 9876543210
-5. SUBMIT | #save-customer
-6. OPEN_PAGE | customers
-7. READ_TABLE | #customer-table-body
-```
-
-### 4. Workflow Validation
-
-Before execution, the workflow is checked for:
-
-* Valid actions
-* Required parameters
-* Valid structure
-* Executable steps
-* Unsupported actions
-
-Invalid actions such as `FAKE_ACTION` are rejected before reaching the automation runner.
-
-### 5. Risk Detection
-
-Destructive actions require confirmation.
-
-```text
-Delete Amit from customers
-```
-
-```text
-Risky workflow: True
-Risk type: delete
-```
-
-It asks the user for confirmation before executing the action.
-
-### 6. Browser Automation
-
-Validated workflows are executed using Playwright and the result is returned to the user.
+- **Python 3.10+** — Core engine logic, intent detection, and entity extraction
+- **Flask & Jinja2** — CRM web application backend and template rendering engine
+- **Playwright for Python** — Headless browser automation execution
+- **Tesseract OCR / Pytesseract** — Visual verification of rendered browser screenshots
+- **Vanilla CSS & Flexbox/Grid** — Modern responsive UI styling, glassmorphism card panels, and dynamic banner gradients
 
 ---
 
 ## Supported Operations
 
-| Category     | Operations            |
-| ------------ | --------------------- |
-| Customers    | Add, Delete, Read     |
-| Products     | Add, Update, Read     |
-| Reports      | Download              |
-| Files        | Upload, Download      |
-| Email        | Send Email            |
-| Workflows    | Multi-step execution  |
-| Verification | Read tables / results |
-
----
-
-## Multi-Step Automation
-
-It can combine multiple actions into a single workflow.
-
-Example:
-
-```text
-Open the CRM, add Priya Mehta as a customer with phone number
-XXXXXXXXXX, save the record and verify that the customer appears
-in the table.
-```
-
-Generated workflow:
-
-```text
-1. OPEN_PAGE | customers
-2. CLICK | #add-customer-btn
-3. ENTER_TEXT | #customer-name | Pankaj Koche
-4. ENTER_TEXT | #phone-number | 9876543210
-5. SUBMIT | #save-customer
-6. OPEN_PAGE | customers
-7. READ_TABLE | #customer-table-body
-```
-
----
-
-## Error Handling
-
-If an automation step fails, engine:
-
-1. Identifies the failed step.
-2. Reads the error.
-3. Provides a recovery suggestion.
-4. Retries the operation.
-5. Stops safely if retries fail.
-
-Example:
-
-```text
-Automation error:
-Locator.wait_for: Timeout
-
-Failed step:
-CLICK customer selector
-
-Suggested recovery:
-Recheck the page and try an alternative selector.
-
-Automation stopped safely after retry attempts.
-```
-
-This prevents browser failures from producing an unhandled application crash.
-
----
-
-## Language Support
-
-Supports:
-
-* English
-* Hindi
-* Hinglish
-
-Examples:
-
-```text
-Add Priya Mehta as a customer with phone number XXXXXXXXX
-```
-
-```text
-Priya naam ka customer add karo with phone number XXXXXXXXXX
-```
-
-```text
-Product ka price 599 kar do
-```
-
----
-
-## Model
-
-The current implementation uses the Groq API with:
-
-```text
-openai/gpt-oss-120b
-```
-
-The model is used for:
-
-* Intent detection
-* Entity extraction
-* Natural-language understanding
-* Workflow generation
-* Structured JSON output
-
-The generated workflow is validated before execution.
-
----
-
-## Dataset & Evaluation
-
-The evaluation dataset contains:
-
-| Dataset            | Examples |
-| ------------------ | -------: |
-| Full Dataset       |      400 |
-| Development Set    |      320 |
-| Evaluation Set     |       80 |
-| Reference Examples |       40 |
-
-Reference examples are stored in:
-
-```text
-src/willovate/reference_examples.json
-```
-
-### Final Evaluation
-
-| Metric                       |      Result |
-| ---------------------------- | ----------: |
-| Intent Accuracy              | **100.00%** |
-| Entity Accuracy              |  **97.50%** |
-| Missing-Information Accuracy |  **98.75%** |
-| JSON Validity                | **100.00%** |
-| Workflow Validation          | **100.00%** |
-| Unsupported-Action Rate      |   **0.00%** |
-| Hallucination Rate           |   **0.00%** |
-
-### Workflow Results
-
-```text
-Workflow attempts:       74
-Valid workflows:         74
-Generation failures:      0
-Validation failures:      0
-```
-
-The workflow-generation comparison metric is separate from workflow validity. All 74 evaluated workflows passed workflow validation.
-
-The remaining evaluation errors were mainly related to natural-language date normalization, such as interpreting `Kal` as `yesterday` and normalizing `todays` to `today`.
-
----
-
-## Technologies
-
-* **Python** — Core implementation
-* **GPT-OSS 120B** — Natural-language understanding and workflow generation
-* **Groq API** — LLM inference
-* **Playwright** — Browser automation
-* **Pydantic** — Workflow/schema validation
-* **Flask** — Sample CRM backend
-* **HTML / CSS / JavaScript** — Sample CRM interface
+| Category | Description | Examples |
+| :--- | :--- | :--- |
+| **Homepage Customization** | Update heading, subtitle, announcement, contact, logo, and visual banner themes | *"Change homepage heading to Independence Day Sale with patriotic vibes"* |
+| **Offers & Campaigns** | Add and display active promotional offers in marquee ticker | *"Add offer Summer Special with 20% discount on software"* |
+| **Customer Management** | Add, delete, list, and verify customer records | *"Add Amit Sharma as active customer with phone 7873543100"* |
+| **Product Management** | Add, update price/stock, and list products | *"Add CRM Pro software for 4999 in stock 120"* |
+| **Reports & Files** | Download reports, upload store logos, and export data | *"Upload brand logo image to homepage"* |
 
 ---
 
@@ -324,40 +95,42 @@ Willovate AI Automation Engine/
 │
 ├── src/
 │   └── willovate/
-│       ├── intent_detector.py
-│       ├── workflow_generator.py
-│       ├── workflow_validator.py
-│       ├── automation_runner.py
-│       ├── error_handler.py
-│       ├── llm_client.py
-│       ├── schemas.py
-│       └── reference_examples.json
+│       ├── intent_detector.py      # Natural-language intent classifier
+│       ├── banner_theme.py         # Dynamic theme & sale description generator
+│       ├── workflow_generator.py   # Executable step generator
+│       ├── workflow_validator.py   # Workflow schema & safety validator
+│       ├── automation_runner.py    # Playwright browser executor
+│       ├── risk_classifier.py     # Destructive action classifier
+│       └── tesseract_ocr.py        # Visual OCR verification
 │
 ├── sample_crm/
-│   ├── app.py
+│   ├── app.py                      # Flask backend & global context processors
 │   ├── templates/
-│   ├── static/
-│   └── uploads/
+│   │   ├── base.html               # Main layout & sidebar with dynamic logo
+│   │   ├── dashboard.html          # Main dashboard with banner & offer marquee
+│   │   ├── homepage.html           # Storefront customization panel
+│   │   ├── offers.html             # Offer campaign management
+│   │   └── components/
+│   │       └── hero_banner.html    # Unified reusable storefront banner
+│   └── static/
+│       ├── css/style.css           # Responsive design system
+│       └── uploads/                # Custom logo and banner media files
 │
-├── run_willovate.py
-├── requirements.txt
-├── README.md
-└── .gitignore
+├── run_willovate.py                # Command-line entry point for automation engine
+├── requirements.txt                # Python dependencies
+└── README.md                       # Project documentation
 ```
 
 ---
 
-## Requirements
+## Installation & Setup
 
-* Python 3.10+
-* Groq API key
-* Internet connection for LLM inference
-* Playwright
-* Dependencies listed in `requirements.txt`
+### 1. Prerequisites
 
----
+- Python 3.10+
+- Tesseract OCR (installed on system path for visual verification)
 
-## Installation
+### 2. Clone & Install Dependencies
 
 ```bash
 git clone <repository-url>
@@ -366,55 +139,36 @@ cd "Willovate AI Automation Engine"
 python -m venv venv
 ```
 
-### Windows
-
+**Windows (PowerShell):**
 ```powershell
-venv\Scripts\activate
-```
-
-### Install Dependencies
-
-```bash
+.\venv\Scripts\activate
 pip install -r requirements.txt
 playwright install
 ```
 
 ---
 
-## Environment Variables
+## Running the Application
 
-Create a `.env` file in the project root:
+### Step 1: Start the Sample CRM Application
 
-```env
-GROQ_API_KEY=your_groq_api_key
-```
+In your primary terminal:
 
-Never commit the `.env` file or expose the API key.
-
----
-
-## Running the Project
-
-### 1. Start the Sample CRM
-
-```bash
+```powershell
 python sample_crm/app.py
 ```
 
-The CRM runs at:
-
+The sample CRM will start at:
 ```text
 http://127.0.0.1:5000
 ```
 
-Keep the CRM running.
+### Step 2: Run the AI Automation Engine
 
-### 2. Start
-
-Open another terminal:
+In a second terminal:
 
 ```powershell
-venv\Scripts\activate
+.\venv\Scripts\activate
 python run_willovate.py
 ```
 
@@ -422,102 +176,7 @@ Enter a natural-language instruction when prompted:
 
 ```text
 What should Willovate do?
-> Add Pankaj Koche as a customer with phone number 9876543210
+> Change the homepage heading to Mega Summer Sale with summer vibes like beaches, sun, and ocean waves
 ```
 
----
-
-## Final Demonstration
-
-The main end-to-end demonstration is:
-
-```text
-Open the CRM, add Pankaj Koche as a customer with phone number
-9876543210, save the record and verify that the customer appears
-in the table.
-```
-
-The complete pipeline is:
-
-```text
-Instruction
-     ↓
-Intent + Entities
-     ↓
-Missing Information Check
-     ↓
-Workflow Generation
-     ↓
-Workflow Validation
-     ↓
-Risk Check
-     ↓
-Browser Automation
-     ↓
-CRM Update
-     ↓
-Table Verification
-     ↓
-Final Result
-```
-
----
-
-## Security
-
-The following files must never be committed:
-
-```text
-.env
-venv/
-__pycache__/
-*.pyc
-*.log
-```
-
-These are excluded through `.gitignore`.
-
----
-
-## Future Scope
-
-* Screenshot and OCR-based UI understanding
-* Vision-based UI element detection
-* Automatic selector recovery
-* Improved bulk-operation handling
-* Better multilingual normalization
-* Support for additional web applications
-* Advanced workflow recovery
-* Standalone web interface
-* API deployment
-
----
-
-## Objective
-
-It demonstrates how an AI system can convert high-level natural-language business instructions into safe, validated and executable browser automation workflows.
-
-```text
-Natural Language
-       ↓
-AI Understanding
-       ↓
-Intent + Entities
-       ↓
-Workflow Generation
-       ↓
-Validation
-       ↓
-Risk Detection
-       ↓
-Browser Automation
-       ↓
-Error Recovery
-       ↓
-Verified Result
-```
-
-The project provides a foundation for intelligent automation across CRM systems and other web-based business applications.
-
-```
-```
+The engine will classify the intent, synthesize the banner theme, generate the workflow, execute Playwright browser steps, and update the CRM dashboard in real time.

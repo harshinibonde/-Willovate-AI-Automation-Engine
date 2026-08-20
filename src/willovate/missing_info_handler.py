@@ -37,6 +37,17 @@ REQUIRED_FIELDS = {
     "customer_name",
     "phone_number",
     ],
+    "CUSTOMIZE_PAGE": [
+        "target_element",
+        "new_value",
+    ],
+    "UPLOAD_IMAGE": [
+        "file_name",
+    ],
+    "CREATE_OFFER": [
+        "offer_name",
+        "discount",
+    ],
 }
 
 

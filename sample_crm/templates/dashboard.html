@@ -3,197 +3,165 @@
 {% block title %}Dashboard | Willovate CRM{% endblock %}
 
 {% block content %}
+<!-- 1. PAGE HEADER -->
 <div class="page-header">
     <div>
         <div class="breadcrumb">Workspace / Dashboard</div>
-        <h1>Good morning, Admin</h1>
-        <p>Here's what's happening across your CRM today.</p>
+        <h1>Workspace Overview</h1>
+        <p>Central overview of your store branding, active campaigns, and CRM metrics.</p>
     </div>
 
     <div class="header-actions">
-        <a
-            href="{{ url_for('add_customer') }}"
-            class="button button-primary"
-            id="dashboard-add-customer"
-        >
-            <span>+</span>
-            Add Customer
+        <a href="{{ url_for('homepage') }}" class="button button-secondary" id="dashboard-customize-homepage">
+            Customize Homepage
+        </a>
+        <a href="{{ url_for('offers') }}" class="button button-primary" id="dashboard-create-offer">
+            + Create Offer
         </a>
     </div>
 </div>
 
+<!-- 2. LARGE HERO / BRAND BANNER -->
+{% include 'components/hero_banner.html' %}
+
+<!-- 3. ACTIVE OFFERS MARQUEE BANNER -->
+{% if offers %}
+<div class="offers-marquee-banner" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f3e8ff 100%); border: 1px solid #bae6fd; color: #1e293b; padding: 12px 20px; border-radius: 12px; margin-bottom: 24px; display: flex; align-items: center; gap: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(14, 165, 233, 0.08);">
+    <div style="font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #0284c7; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+        <span>🔥</span> ACTIVE OFFERS:
+    </div>
+    <div style="flex: 1; overflow: hidden;">
+        <marquee behavior="scroll" direction="left" scrollamount="6" style="display: flex; align-items: center; vertical-align: middle;">
+            {% for offer in offers %}
+                <span style="display: inline-flex; align-items: center; gap: 8px; margin-right: 40px; font-size: 14px;">
+                    <strong style="color: #0369a1;">{{ offer.offer_name }}</strong>
+                    <span style="background: #0284c7; color: #ffffff; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 700;">{{ offer.discount }}</span>
+                    {% if offer.description %}
+                        <span style="color: #334155;">- {{ offer.description }}</span>
+                    {% endif %}
+                    {% if offer.end_date %}
+                        <span style="color: #64748b; font-size: 12px;">(Valid till {{ offer.end_date }})</span>
+                    {% endif %}
+                </span>
+            {% endfor %}
+        </marquee>
+    </div>
+</div>
+{% endif %}
+
+<!-- 5. METRIC CARDS -->
 <section class="stats-grid">
     <div class="stat-card">
-        <div class="stat-icon blue">♙</div>
+        <div class="stat-icon blue">⌂</div>
         <div class="stat-content">
-            <span>Total Customers</span>
-            <strong>{{ customer_count }}</strong>
-            <small class="positive">↑ 12.5% this month</small>
+            <span>Homepage</span>
+            <strong>Configured</strong>
+            <small class="positive">Live Storefront</small>
         </div>
     </div>
 
     <div class="stat-card">
-        <div class="stat-icon purple">◇</div>
+        <div class="stat-icon green">🏷</div>
+        <div class="stat-content">
+            <span>Active Offers</span>
+            <strong>{{ offers|length }}</strong>
+            <small class="positive">Current Campaigns</small>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon purple">♙</div>
+        <div class="stat-content">
+            <span>Customers</span>
+            <strong>{{ customer_count }}</strong>
+            <small class="positive">Registered Accounts</small>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon orange">◇</div>
         <div class="stat-content">
             <span>Products</span>
             <strong>{{ product_count }}</strong>
-            <small class="positive">↑ 8.2% this month</small>
-        </div>
-    </div>
-
-    <div class="stat-card">
-        <div class="stat-icon green">✓</div>
-        <div class="stat-content">
-            <span>Active Customers</span>
-            <strong>{{ active_customers }}</strong>
-            <small class="positive">↑ 4.1% this month</small>
-        </div>
-    </div>
-
-    <div class="stat-card">
-        <div class="stat-icon orange">₹</div>
-        <div class="stat-content">
-            <span>Monthly Revenue</span>
-            <strong>₹84,520</strong>
-            <small class="positive">↑ 10.8% this month</small>
+            <small class="positive">Catalog Items</small>
         </div>
     </div>
 </section>
 
-<div class="content-grid">
-    <section class="panel large-panel">
-        <div class="panel-header">
-            <div>
-                <h2>Recent Customers</h2>
-                <p>Latest customer activity</p>
-            </div>
-
-            <a
-                href="{{ url_for('customer_list') }}"
-                class="text-button"
-                id="view-all-customers"
-            >
-                View all →
-            </a>
-        </div>
-
-        <div class="mini-table">
-            <div class="mini-row mini-header">
-                <span>Customer</span>
-                <span>Company</span>
-                <span>Status</span>
-            </div>
-
-            {% for customer in [
-                {"name": "Amit Sharma", "company": "TechNova", "status": "Active"},
-                {"name": "Priya Mehta", "company": "BrightLabs", "status": "Active"},
-                {"name": "Rahul Verma", "company": "Vertex Solutions", "status": "Pending"},
-                {"name": "Ananya Patel", "company": "CloudPeak", "status": "Active"}
-            ] %}
-            <div class="mini-row">
-                <div class="customer-cell">
-                    <div class="small-avatar">
-                        {{ customer.name[0] }}
-                    </div>
-                    <span>{{ customer.name }}</span>
-                </div>
-                <span>{{ customer.company }}</span>
-                <span>
-                    <span class="badge {{ customer.status|lower }}">
-                        {{ customer.status }}
-                    </span>
-                </span>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-
+<!-- 6. QUICK ACTIONS & RECENT AI ACTIONS ROW -->
+<div class="dashboard-bottom-grid">
+    <!-- QUICK ACTIONS -->
     <section class="panel">
         <div class="panel-header">
             <div>
-                <h2>Quick Actions</h2>
-                <p>Common tasks</p>
+                <h2>QUICK ACTIONS</h2>
+                <p>Fast navigation to workspace management areas</p>
             </div>
         </div>
 
-        <div class="quick-actions">
-            <a
-                href="{{ url_for('add_customer') }}"
-                class="quick-action"
-                id="quick-add-customer"
-            >
-                <span class="quick-icon blue">+</span>
+        <div class="quick-actions-grid">
+            <a href="{{ url_for('homepage') }}" class="quick-action-card" id="action-customize-homepage">
+                <span class="quick-icon blue">⌂</span>
                 <span>
-                    <strong>Add Customer</strong>
-                    <small>Create a new customer record</small>
+                    <strong>Customize Homepage</strong>
+                    <small>Update banners, hero text & logo</small>
                 </span>
-                <span>→</span>
             </a>
 
-            <a
-                href="{{ url_for('customer_list') }}"
-                class="quick-action"
-                id="quick-view-customers"
-            >
+            <a href="{{ url_for('offers') }}" class="quick-action-card" id="action-create-offer">
+                <span class="quick-icon green">🏷</span>
+                <span>
+                    <strong>Create Offer</strong>
+                    <small>Add promotional campaigns</small>
+                </span>
+            </a>
+
+            <a href="{{ url_for('customer_list') }}" class="quick-action-card" id="action-view-customers">
                 <span class="quick-icon purple">♙</span>
                 <span>
                     <strong>View Customers</strong>
-                    <small>Manage your customer records</small>
+                    <small>Manage customer accounts & data</small>
                 </span>
-                <span>→</span>
             </a>
 
-            <a
-                href="{{ url_for('reports') }}"
-                class="quick-action"
-                id="quick-reports"
-            >
-                <span class="quick-icon green">▤</span>
+            <a href="{{ url_for('product_list') }}" class="quick-action-card" id="action-view-products">
+                <span class="quick-icon orange">◇</span>
                 <span>
-                    <strong>View Reports</strong>
-                    <small>Review business performance</small>
+                    <strong>View Products</strong>
+                    <small>Manage catalog & inventory</small>
                 </span>
-                <span>→</span>
             </a>
         </div>
     </section>
+
+    <!-- RECENT AI ACTIONS -->
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <h2>RECENT AI ACTIONS</h2>
+                <p>Latest website & CRM modifications</p>
+            </div>
+        </div>
+
+        <div class="activity-list">
+            <div class="activity-item">
+                <div class="activity-dot green"></div>
+                <div>
+                    <strong>Homepage heading changed</strong>
+                    <p>{{ homepage_settings.heading or 'Welcome to Our Premium Store' }} • OCR Verified</p>
+                </div>
+                <span class="activity-time">2 mins ago</span>
+            </div>
+
+            <div class="activity-item">
+                <div class="activity-dot green"></div>
+                <div>
+                    <strong>Promotional offer created</strong>
+                    <p>{% if offers %}{{ offers[0].offer_name }}{% else %}Summer Special 20% OFF{% endif %} • Completed</p>
+                </div>
+                <span class="activity-time">5 mins ago</span>
+            </div>
+        </div>
+    </section>
 </div>
-
-<section class="panel activity-panel">
-    <div class="panel-header">
-        <div>
-            <h2>Recent Activity</h2>
-            <p>Latest actions in your workspace</p>
-        </div>
-    </div>
-
-    <div class="activity-list">
-        <div class="activity-item">
-            <div class="activity-dot blue"></div>
-            <div>
-                <strong>New customer added</strong>
-                <p>Amit Sharma was added to the CRM.</p>
-            </div>
-            <span>10 min ago</span>
-        </div>
-
-        <div class="activity-item">
-            <div class="activity-dot green"></div>
-            <div>
-                <strong>Report generated</strong>
-                <p>Daily sales report was generated successfully.</p>
-            </div>
-            <span>32 min ago</span>
-        </div>
-
-        <div class="activity-item">
-            <div class="activity-dot purple"></div>
-            <div>
-                <strong>Customer updated</strong>
-                <p>Priya Mehta's account details were updated.</p>
-            </div>
-            <span>1 hr ago</span>
-        </div>
-    </div>
-</section>
 {% endblock %}

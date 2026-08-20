@@ -1,0 +1,50 @@
+<div id="hero-banner" class="large-hero-banner" style="background: {{ homepage_settings.banner_style or 'radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.85) 0%, transparent 60%), linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 50%, #e0f7fa 100%)' }}; transition: all 0.3s ease; padding: 28px; border-radius: 12px; margin-bottom: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; position: relative; overflow: hidden;">
+    <div style="flex: 1 1 60%; min-width: 300px;">
+        <!-- TOP ROW: Special Announcement at EXTREME LEFT, Contact at EXTREME RIGHT -->
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 20px; gap: 16px;">
+            <!-- EXTREME LEFT: Special Announcement -->
+            <div id="hero-announcement" class="announcement-pill" style="background: {{ homepage_settings.announcement_bg or '#e0f2fe' }}; color: {{ homepage_settings.announcement_color or '#0284c7' }}; margin: 0; display: inline-flex; align-items: center;">
+                {{ homepage_settings.announcement or '⚡ Special Announcement: Free Shipping on Orders Over $50' }}
+            </div>
+
+            <!-- EXTREME RIGHT: Contact Information Only -->
+            <div style="font-size: 13px; opacity: 0.9; color: {{ homepage_settings.heading_color or '#475569' }}; white-space: nowrap; text-align: right;">
+                Contact: <strong id="contact-number" style="color: inherit;">{{ homepage_settings.contact_number or '+1 (800) 555-0199' }}</strong>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT: Sale Heading (Line 1), Sale Description (Line 2) -->
+        <div style="max-width: 620px;">
+            <h1 id="hero-heading" class="hero-banner-title" style="color: {{ homepage_settings.heading_color or '#1e3a8a' }}; margin: 0 0 10px 0; font-size: 32px; font-weight: 800; line-height: 1.2;">
+                {{ homepage_settings.heading or 'Mega Summer Sale' }}
+            </h1>
+            <p id="hero-subtitle" style="color: {{ homepage_settings.heading_color or '#334155' }}; font-size: 15px; line-height: 1.5; margin: 0; opacity: 0.9;">
+                {{ homepage_settings.subtitle or get_sale_description(homepage_settings.heading) }}
+            </p>
+        </div>
+    </div>
+
+    <!-- RIGHT GRAPHICS ILLUSTRATION -->
+    <div class="hero-banner-graphics" style="flex: 0 0 auto; margin-left: 24px; display: flex; align-items: center; justify-content: center;">
+        <svg class="hero-illustration-svg" viewBox="0 0 260 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 220px; height: auto;">
+            <!-- Shopping Cart -->
+            <path d="M10 25H30L45 75H130L145 35H40" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="55" cy="90" r="7" fill="#3b82f6"/>
+            <circle cx="120" cy="90" r="7" fill="#3b82f6"/>
+            <!-- Background Grid Dots -->
+            <circle cx="90" cy="40" r="2" fill="#cbd5e1"/>
+            <circle cx="105" cy="40" r="2" fill="#cbd5e1"/>
+            <circle cx="120" cy="40" r="2" fill="#cbd5e1"/>
+            <circle cx="90" cy="55" r="2" fill="#cbd5e1"/>
+            <circle cx="105" cy="55" r="2" fill="#cbd5e1"/>
+            <circle cx="120" cy="55" r="2" fill="#cbd5e1"/>
+            <!-- Bar Chart & Arrow -->
+            <rect x="170" y="70" width="12" height="25" rx="3" fill="#cbd5e1"/>
+            <rect x="190" y="50" width="12" height="45" rx="3" fill="#93c5fd"/>
+            <rect x="210" y="35" width="12" height="60" rx="3" fill="#3b82f6"/>
+            <rect x="230" y="15" width="12" height="80" rx="3" fill="#1d4ed8"/>
+            <path d="M165 65L195 40L220 50L250 12" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M238 12H250V24" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+</div>

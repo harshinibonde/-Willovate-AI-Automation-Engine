@@ -45,3 +45,18 @@ src/willovate_ai_automation_engine.egg-info/
 # Temporary CRM uploads
 sample_crm/uploads/*
 !sample_crm/uploads/.gitkeep
+
+# Screenshots
+screenshot*.png
+
+# Local test/demo files
+brand_logo.png
+new_logo.png
+run_all_tests.py
+run_e2e_test.py
+test_acceptance_suite.py
+test_run_results.txt
+test_suite_runner.py
+
+# Generated/local uploads
+sample_crm/static/uploads/

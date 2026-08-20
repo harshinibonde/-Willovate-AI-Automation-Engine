@@ -294,5 +294,64 @@
     "entities": {
       "customer_name": "Ananya"
     }
+  },
+  {
+    "instruction": "Change the homepage heading to Mega Summer Sale",
+    "intent": "CUSTOMIZE_PAGE",
+    "entities": {
+      "target_element": "heading",
+      "new_value": "Mega Summer Sale"
+    }
+  },
+  {
+    "instruction": "Update the storefront title to Welcome to Willovate Store",
+    "intent": "CUSTOMIZE_PAGE",
+    "entities": {
+      "target_element": "heading",
+      "new_value": "Welcome to Willovate Store"
+    }
+  },
+  {
+    "instruction": "Change the subtitle to Special deals on all items",
+    "intent": "CUSTOMIZE_PAGE",
+    "entities": {
+      "target_element": "subtitle",
+      "new_value": "Special deals on all items"
+    }
+  },
+  {
+    "instruction": "Upload brand_logo.png as the website logo",
+    "intent": "UPLOAD_IMAGE",
+    "entities": {
+      "file_name": "brand_logo.png",
+      "target_location": "logo"
+    }
+  },
+  {
+    "instruction": "Replace the hero banner image with summer_banner.jpg",
+    "intent": "UPLOAD_IMAGE",
+    "entities": {
+      "file_name": "summer_banner.jpg",
+      "target_location": "banner"
+    }
+  },
+  {
+    "instruction": "Create a 30% OFF offer for Software",
+    "intent": "CREATE_OFFER",
+    "entities": {
+      "offer_name": "Software Special Sale",
+      "discount": "30%",
+      "category": "Software"
+    }
+  },
+  {
+    "instruction": "Add a new offer 50% discount for Analytics valid till 2026-12-31",
+    "intent": "CREATE_OFFER",
+    "entities": {
+      "offer_name": "Analytics Discount 50%",
+      "discount": "50%",
+      "category": "Analytics",
+      "end_date": "2026-12-31"
+    }
   }
 ]

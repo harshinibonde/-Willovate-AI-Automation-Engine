@@ -1,3 +1,4 @@
+from willovate.banner_theme import BannerThemeManager
 from willovate.schemas import IntentDetectionResponse, Workflow
 
 
@@ -184,7 +185,7 @@ class WorkflowGenerator:
             customer_name = entities.get("customer_name", "").strip()
 
             target = (
-                f'button[data-customer-name*="{customer_name}"]'
+                "__CUSTOMER_DELETE__"
                 if customer_name
                 else "#customer-table-body .action-button.delete"
             )
@@ -199,7 +200,7 @@ class WorkflowGenerator:
                     {
                         "action": "CLICK",
                         "target": target,
-                        "value": None
+                        "value": customer_name or None
                     },
                     {
                         "action": "DELETE",
@@ -358,6 +359,208 @@ class WorkflowGenerator:
                     }
                 ]
             })
+
+        if intent == "CUSTOMIZE_PAGE":
+            target_element = entities.get(
+                "target_element", "heading"
+            )
+            new_value = entities.get("new_value", "")
+            visual_theme = (
+                entities.get("visual_theme")
+                or entities.get("theme")
+                or entities.get("style_prompt")
+                or ""
+            )
+
+            target_map = {
+                "heading": "#hero-heading",
+                "subtitle": "#hero-subtitle",
+                "banner_text": "#hero-banner-text",
+                "announcement": "#hero-announcement",
+                "contact_number": "#contact-number",
+            }
+
+            selector = target_map.get(
+                target_element, "#hero-heading"
+            )
+
+            steps = [
+                {
+                    "action": "OPEN_PAGE",
+                    "target": "homepage",
+                    "value": None
+                },
+                {
+                    "action": "READ_TEXT",
+                    "target": selector,
+                    "value": None
+                },
+                {
+                    "action": "UPDATE_TEXT",
+                    "target": selector,
+                    "value": new_value
+                }
+            ]
+
+            if target_element == "heading" and new_value:
+                dynamic_sub = BannerThemeManager.generate_sale_description(new_value)
+                steps.append({
+                    "action": "UPDATE_TEXT",
+                    "target": "#hero-subtitle",
+                    "value": dynamic_sub
+                })
+                steps.append({
+                    "action": "ENTER_TEXT",
+                    "target": "#hidden-subtitle",
+                    "value": dynamic_sub
+                })
+
+            theme_prompt = f"{new_value} {visual_theme}".strip()
+            theme_info = BannerThemeManager.detect_and_generate_theme(theme_prompt)
+
+            if theme_info and theme_info.get("banner_style"):
+                steps.append({
+                    "action": "APPLY_STYLE",
+                    "target": "#hero-banner",
+                    "value": f"background: {theme_info['banner_style']}; color: {theme_info['heading_color']}; padding: 28px; border-radius: 12px; margin-bottom: 24px; position: relative; overflow: hidden;"
+                })
+                steps.append({
+                    "action": "ENTER_TEXT",
+                    "target": "#hidden-banner_style",
+                    "value": theme_info["banner_style"]
+                })
+                steps.append({
+                    "action": "ENTER_TEXT",
+                    "target": "#hidden-banner_theme",
+                    "value": theme_info["theme_name"]
+                })
+
+            steps.extend([
+                {
+                    "action": "CLICK",
+                    "target": "#save-homepage",
+                    "value": None
+                },
+                {
+                    "action": "TAKE_SCREENSHOT",
+                    "target": "screenshot_customize.png",
+                    "value": "screenshot_customize.png"
+                },
+            ])
+
+            return Workflow.model_validate({"steps": steps})
+
+        if intent == "UPLOAD_IMAGE":
+            target_location = entities.get(
+                "target_location", "logo"
+            )
+            file_name = entities.get("file_name", "")
+
+            upload_map = {
+                "logo": (
+                    "#logo-upload",
+                    "#save-homepage",
+                ),
+                "banner": (
+                    "#banner-upload",
+                    "#save-homepage",
+                ),
+            }
+
+            upload_selector, save_selector = upload_map.get(
+                target_location,
+                ("#logo-upload", "#save-homepage"),
+            )
+
+            steps = [
+                {
+                    "action": "OPEN_PAGE",
+                    "target": "homepage",
+                    "value": None
+                },
+                {
+                    "action": "UPLOAD_FILE",
+                    "target": upload_selector,
+                    "value": file_name
+                },
+                {
+                    "action": "CLICK",
+                    "target": save_selector,
+                    "value": None
+                },
+                {
+                    "action": "TAKE_SCREENSHOT",
+                    "target": "screenshot_upload.png",
+                    "value": "screenshot_upload.png"
+                },
+            ]
+
+            return Workflow.model_validate({"steps": steps})
+
+        if intent == "CREATE_OFFER":
+            steps = [
+                {
+                    "action": "OPEN_PAGE",
+                    "target": "offers",
+                    "value": None
+                },
+                {
+                    "action": "ENTER_TEXT",
+                    "target": "#offer-name",
+                    "value": entities.get("offer_name")
+                },
+                {
+                    "action": "ENTER_TEXT",
+                    "target": "#offer-discount",
+                    "value": entities.get("discount")
+                },
+            ]
+
+            if entities.get("category"):
+                steps.append({
+                    "action": "SELECT_OPTION",
+                    "target": "#offer-category",
+                    "value": entities["category"]
+                })
+
+            if entities.get("end_date"):
+                steps.append({
+                    "action": "ENTER_TEXT",
+                    "target": "#offer-end-date",
+                    "value": entities["end_date"]
+                })
+
+            if entities.get("description"):
+                steps.append({
+                    "action": "ENTER_TEXT",
+                    "target": "#offer-description",
+                    "value": entities["description"]
+                })
+
+            steps.extend([
+                {
+                    "action": "SUBMIT",
+                    "target": "#save-offer",
+                    "value": None
+                },
+                {
+                    "action": "OPEN_PAGE",
+                    "target": "offers",
+                    "value": None
+                },
+                {
+                    "action": "READ_TABLE",
+                    "target": "#offer-table-body",
+                    "value": None
+                },
+                {
+                    "action": "TAKE_SCREENSHOT",
+                    "target": "screenshot_offer.png",
+                    "value": "screenshot_offer.png"
+                },
+            ])
+
+            return Workflow.model_validate({"steps": steps})
 
         return Workflow.model_validate({
             "steps": []

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Promotional Offers | Willovate CRM{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <div class="breadcrumb">Workspace / Offers</div>
+        <h1>Promotional Offers & Discounts</h1>
+        <p>Create and manage promotional campaigns, coupons, and product discounts.</p>
+    </div>
+</div>
+
+<section class="form-layout" style="margin-bottom: 32px;">
+    <div class="panel form-panel">
+        <div class="panel-header">
+            <div>
+                <h2>Create New Offer</h2>
+                <p>Add a new promotional campaign or discount deal.</p>
+            </div>
+        </div>
+
+        <form method="POST" action="/offers/add" id="offer-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="offer-name">Offer Name</label>
+                    <input type="text" id="offer-name" name="offer_name" placeholder="e.g. Summer Sale 30% OFF" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="offer-discount">Discount Percentage / Amount</label>
+                    <input type="text" id="offer-discount" name="discount" placeholder="e.g. 30% or $50" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="offer-category">Product Category</label>
+                    <select id="offer-category" name="category">
+                        <option value="All Categories">All Categories</option>
+                        <option value="Software">Software</option>
+                        <option value="Analytics">Analytics</option>
+                        <option value="Automation">Automation</option>
+                        <option value="Services">Services</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="offer-end-date">End Date</label>
+                    <input type="text" id="offer-end-date" name="end_date" placeholder="YYYY-MM-DD">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="offer-description">Description</label>
+                <textarea id="offer-description" name="description" rows="2" placeholder="Brief description of the offer promotion..."></textarea>
+            </div>
+
+            <div class="form-footer">
+                <button type="submit" class="button button-primary" id="save-offer">
+                    Save Offer
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="panel">
+    <div class="panel-header">
+        <div>
+            <h2>Active Offers</h2>
+            <p>List of current campaigns and discounts.</p>
+        </div>
+    </div>
+
+    <table class="data-table" id="offer-table">
+        <thead>
+            <tr>
+                <th>Offer Name</th>
+                <th>Discount</th>
+                <th>Category</th>
+                <th>End Date</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="offer-table-body">
+            {% for offer in offers %}
+            <tr>
+                <td><strong>{{ offer.offer_name }}</strong></td>
+                <td><span class="badge badge-success">{{ offer.discount }}</span></td>
+                <td>{{ offer.category or 'All Categories' }}</td>
+                <td>{{ offer.end_date or 'Ongoing' }}</td>
+                <td>{{ offer.description or '-' }}</td>
+                <td><span class="status-pill status-active">Active</span></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" style="text-align: center; color: #6b7280; padding: 24px;">
+                    No active offers found. Create your first offer above.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

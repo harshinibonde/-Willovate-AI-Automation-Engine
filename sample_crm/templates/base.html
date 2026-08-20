@@ -13,7 +13,11 @@
     <div class="app-shell">
         <aside class="sidebar">
             <div class="brand">
-                <div class="brand-mark">W</div>
+                {% if homepage_settings.logo_url %}
+                    <img src="{{ homepage_settings.logo_url }}" alt="Logo" style="max-height: 36px; width: auto; object-fit: contain; border-radius: 6px;">
+                {% else %}
+                    <div class="brand-mark">W</div>
+                {% endif %}
                 <div>
                     <div class="brand-name">Willovate</div>
                     <div class="brand-subtitle">CRM Platform</div>
@@ -49,6 +53,20 @@
                    id="nav-reports">
                     <span class="nav-icon">▤</span>
                     <span>Reports</span>
+                </a>
+
+                <a href="{{ url_for('homepage') }}"
+                   class="nav-item {% if request.endpoint == 'homepage' %}active{% endif %}"
+                   id="nav-homepage">
+                    <span class="nav-icon">⌂</span>
+                    <span>Homepage</span>
+                </a>
+
+                <a href="{{ url_for('offers') }}"
+                   class="nav-item {% if request.endpoint in ['offers', 'add_offer'] %}active{% endif %}"
+                   id="nav-offers">
+                    <span class="nav-icon">🏷</span>
+                    <span>Offers</span>
                 </a>
             </nav>
 
